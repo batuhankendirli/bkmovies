@@ -1,0 +1,70 @@
+.btn-gray {
+  &-watchlist {
+    height: 52px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: $color-text-primary;
+    font-weight: 900;
+    border-radius: 15px;
+    padding: 1.2rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: $color-text-fourth;
+    transition: all 0.2s;
+    backdrop-filter: blur(7px);
+
+    &:hover,
+    &:active {
+      background-color: $color-text-fifth;
+    }
+    &-icon {
+      font-size: 2.8rem;
+      --ionicon-stroke-width: 60px;
+    }
+  }
+}
+
+.btn-blue {
+  &-watchnow {
+    height: 52px;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: $color-secondary;
+    font-weight: 900;
+    border-radius: 15px;
+    display: block;
+    padding: 1.2rem 4.6rem;
+    background-color: $color-button;
+    transition: all 0.2s;
+    &:hover,
+    &:active {
+      background-color: $color-button-hover;
+    }
+  }
+}
+
+.btn-box {
+  position: absolute;
+  padding: 2rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.1rem;
+  z-index: 8;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.btn-watchnow-sm {
+}
+.btn-watchlist-sm {
+  height: 52px;
+  width: 52px;
+  padding: 0;
+  display: block;
+}
