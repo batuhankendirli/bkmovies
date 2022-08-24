@@ -1,0 +1,43 @@
+.user-panel {
+  background-color: $color-primary;
+  width: 30rem;
+  position: fixed;
+  min-height: 100%;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    &-signin,
+    &-signup {
+      font-family: inherit;
+      border: none;
+      padding: 1.6rem 3.6rem;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+    }
+    &-signin {
+      color: $color-text-primary;
+      background-color: rgba(128, 128, 128, 0.356);
+      backdrop-filter: blur(7px);
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-text-fifth;
+      }
+    }
+    &-signup {
+      background-color: $color-button;
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-button-hover;
+      }
+    }
+  }
+}

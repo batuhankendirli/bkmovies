@@ -1,67 +1,65 @@
 import React from 'react';
 import MainSlide from './MainSlide';
 import MovieCard from './MovieCard';
+import MovieSlide from './MovieSlide';
+import { nanoid } from 'nanoid';
 
 export default function SectionMain() {
   const [popularShows, setPopularShows] = React.useState([]);
   const [popularDrama, setPopularDrama] = React.useState([]);
   const [popularCrime, setPopularCrime] = React.useState([]);
   const [popularMystery, setPopularMystery] = React.useState([]);
+  const [popularComedy, setPopularComedy] = React.useState([]);
   React.useEffect(() => {
-    async function getPopularSeries() {
+    async function getGenreType(id) {
       const res = await fetch(
         `https://api.themoviedb.org/3/tv/popular?api_key=${
           import.meta.env.VITE_API_KEY
         }&language=en-US&page=1`
       );
       const data = await res.json();
-      setPopularShows(data.results.slice(0, 3));
-      const res2 = await fetch(
-        `https://api.themoviedb.org/3/tv/popular?api_key=${
-          import.meta.env.VITE_API_KEY
-        }&language=en-US&page=2`
+
+      const filteredData = data.results.filter((item) =>
+        item.genre_ids.includes(id)
       );
-      const data2 = await res2.json();
-      const dramas = data.results
-        .filter((item) => item.genre_ids.includes(18))
-        .sort((a, b) => b.vote_count - a.vote_count)
-        .slice(0, 3);
-      dramas.length < 3 &&
-        dramas.push(
-          ...data2.results
-            .filter((item) => item.genre_ids.includes(18))
-            .sort((a, b) => b.vote_count - a.vote_count)
-            .slice(0, 3 - dramas.length)
+      // .sort((a, b) => b.vote_count - a.vote_count);
+      const allGenreType = filteredData.slice(0, 10);
+      let i = 2;
+      do {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/tv/popular?api_key=${
+            import.meta.env.VITE_API_KEY
+          }&language=en-US&page=${i}`
         );
-      setPopularDrama(dramas);
+        const genreData = await response.json();
+        allGenreType.push(
+          ...genreData.results
+            .filter((item) => item.genre_ids.includes(id))
+            // .sort((a, b) => b.vote_count - a.vote_count)
+            .slice(0, 10 - allGenreType.length)
+        );
+        i++;
+      } while (allGenreType.length < 10);
 
-      const crimes = data.results
-        .filter((item) => item.genre_ids.includes(80))
-        .sort((a, b) => b.vote_count - a.vote_count)
-        .slice(0, 3);
-      crimes.length < 3 &&
-        crimes.push(
-          ...data2.results
-            .filter((item) => item.genre_ids.includes(80))
-            .sort((a, b) => b.vote_count - a.vote_count)
-            .slice(0, 3 - crimes.length)
-        );
-      setPopularCrime(crimes);
+      setPopularShows(data.results.slice(0, 10));
 
-      const mysteries = data.results
-        .filter((item) => item.genre_ids.includes(9648))
-        .sort((a, b) => b.vote_count - a.vote_count)
-        .slice(0, 3);
-      mysteries.length < 3 &&
-        mysteries.push(
-          ...data2.results
-            .filter((item) => item.genre_ids.includes(9648))
-            .sort((a, b) => b.vote_count - a.vote_count)
-            .slice(0, 3 - mysteries.length)
-        );
-      setPopularMystery(mysteries);
+      if (id === 18) {
+        setPopularDrama(allGenreType);
+      }
+      if (id === 80) {
+        setPopularCrime(allGenreType);
+      }
+      if (id === 9648) {
+        setPopularMystery(allGenreType);
+      }
+      if (id === 35) {
+        setPopularComedy(allGenreType);
+      }
     }
-    getPopularSeries();
+    getGenreType(80);
+    getGenreType(18);
+    getGenreType(9648);
+    getGenreType(35);
   }, []);
 
   return (
@@ -98,57 +96,79 @@ export default function SectionMain() {
       </div>
       <MainSlide />
       <h2 className="section-main-header">Popular on BKMovies</h2>
-      <div className="series-wrapper">
-        {popularShows.map((item) => {
+      <MovieSlide
+        data={popularShows.map((item) => {
           return (
             <MovieCard
               image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
               title={item.name}
               genres={item.genre_ids}
               rate={item.vote_average}
+              key={nanoid()}
             />
           );
         })}
-      </div>
+      />
       <h2 className="section-main-header">Drama</h2>
-      <div className="series-wrapper">
-        {popularDrama.map((item) => {
+      <MovieSlide
+        data={popularDrama.map((item) => {
           return (
             <MovieCard
               image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
               title={item.name}
               genres={''}
               rate={item.vote_average}
+              key={nanoid()}
             />
           );
         })}
-      </div>
+      />
       <h2 className="section-main-header">Crime</h2>
-      <div className="series-wrapper">
-        {popularCrime.map((item) => {
+      <MovieSlide
+        data={popularCrime.map((item) => {
           return (
             <MovieCard
               image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
               title={item.name}
               genres={''}
               rate={item.vote_average}
+              key={nanoid()}
             />
           );
         })}
-      </div>
+      />
       <h2 className="section-main-header">Mystery</h2>
-
       <div className="series-wrapper">
-        {popularMystery.map((item) => {
-          return (
-            <MovieCard
-              image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-              title={item.name}
-              genres={''}
-              rate={item.vote_average}
-            />
-          );
-        })}
+        <MovieSlide
+          data={popularMystery.map((item) => {
+            return (
+              <MovieCard
+                image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                title={item.name}
+                genres={''}
+                rate={item.vote_average}
+                key={nanoid()}
+              />
+            );
+          })}
+        />
+      </div>
+
+      <h2 className="section-main-header">Comedy</h2>
+      <div className="series-wrapper">
+        <MovieSlide
+          data={popularComedy.map((item) => {
+            return (
+              <MovieCard
+                image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                title={item.name}
+                genres={''}
+                rate={item.vote_average}
+                key={nanoid()}
+              />
+            );
+          })}
+        />
       </div>
     </section>
   );

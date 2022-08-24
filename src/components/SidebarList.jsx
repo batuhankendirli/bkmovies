@@ -1,7 +1,9 @@
+import { nanoid } from 'nanoid';
+
 export default function SidebarList(props) {
   const dataMap = props.data.map((item) => {
     return (
-      <li className="navigation-list-item selected-list">
+      <li className="navigation-list-item selected-list" key={nanoid()}>
         <ion-icon
           name={item.iconName}
           class="navigation-list-item-svg selected-list-item"

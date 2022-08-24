@@ -14,7 +14,11 @@ export default function MovieCard(props) {
   }
   return (
     <div className="card">
-      <img src={props.image} alt={props.fullTitle} className="card-img" />
+      <img
+        src={props.image}
+        alt={props.fullTitle}
+        className="card-img swiper-lazy"
+      />
       <div className="card-wrapper">
         <h2 className="card-name">{props.title}</h2>
 

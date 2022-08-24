@@ -1,4 +1,5 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { useSwiperSlide } from 'swiper/react';
@@ -42,7 +43,7 @@ export default function MainSlide() {
 
   const mappedData = data.map((item, index) => {
     return (
-      <SwiperSlide>
+      <SwiperSlide key={nanoid()}>
         <Image img={item.img} name={item.name} />
         <ActiveSlide id={index} />
       </SwiperSlide>
