@@ -5,7 +5,6 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { useSwiperSlide } from 'swiper/react';
 
 import Image from './Image';
-import SlideButtons from './SlideButtons';
 import { data } from '../movieData';
 
 import 'swiper/css/navigation';
@@ -63,7 +62,19 @@ export default function MainSlide() {
         pagination={{ clickable: true }}
       >
         {mappedData}
-        <SlideButtons link={link} addWatchLater={addWatchLater} />
+        <div className="btn-box">
+          <span className="btn-gray">
+            <button className="btn-gray-watchlist" onClick={addWatchLater}>
+              <ion-icon name="add-outline" class="btn-gray-watchlist-icon" />
+              <p>Watchlist</p>
+            </button>
+          </span>
+          <span className="btn-blue">
+            <a href={link} className="btn-blue-watchnow" target={'_blank'}>
+              Watch Trailer
+            </a>
+          </span>
+        </div>
       </Swiper>
     </>
   );
