@@ -1,0 +1,47 @@
+.youtube-wrapper {
+  min-height: 563px;
+  min-width: 1000px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.youtube {
+  box-shadow: -2px -3px 15px 5px rgba(0, 0, 0, 0.39);
+}
+
+.close-video {
+  background-color: black;
+  width: 100%;
+  padding: 20px 15px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-close {
+  font-size: 28px;
+  color: rgb(158, 158, 158);
+  transition: all 0.2s;
+}
+
+.icon-close:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.yt-bg {
+  z-index: 10;
+  backdrop-filter: brightness(25%) blur(5px);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

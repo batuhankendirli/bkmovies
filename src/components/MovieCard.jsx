@@ -12,6 +12,7 @@ export default function MovieCard(props) {
       }
     }
   }
+
   return (
     <div className="card">
       <img
@@ -34,13 +35,12 @@ export default function MovieCard(props) {
             >
               <ion-icon name="add-outline" class="btn-gray-watchlist-icon" />
             </button>
-            <a
-              href="#"
-              target="_blank"
+            <button
               className="btn-blue-watchnow btn-watchnow-sm"
+              onClick={props.watchTrailer}
             >
-              Watch
-            </a>
+              Trailer
+            </button>
           </div>
         </div>
       </div>
