@@ -31,6 +31,7 @@ export default function MovieSlide(props) {
       className="series-wrapper"
       spaceBetween={30}
       grabCursor={true}
+      touchEventsTarget={'container'}
     >
       {slide}
     </Swiper>
