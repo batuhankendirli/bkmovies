@@ -79,7 +79,6 @@ export default function SectionMain() {
       ) ||
       data.results[0] ||
       '';
-    console.log(videoObj);
 
     setTrailerActive(true);
     setYoutubePlayer(() => {
