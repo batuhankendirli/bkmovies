@@ -17,8 +17,8 @@ export default function MovieCard(props) {
     <div className="card">
       <img
         src={props.image}
-        alt={props.fullTitle}
-        className="card-img swiper-lazy"
+        alt={`Poster of ${props.title}`}
+        className="card-img"
       />
       <div className="card-wrapper">
         <h2 className="card-name">{props.title}</h2>
