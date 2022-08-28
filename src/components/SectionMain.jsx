@@ -2,6 +2,7 @@ import React from 'react';
 import MainSlide from './MainSlide';
 import MovieCard from './MovieCard';
 import MovieSlide from './MovieSlide';
+import Footer from './Footer';
 import { nanoid } from 'nanoid';
 import YouTube from 'react-youtube';
 
@@ -237,6 +238,7 @@ export default function SectionMain() {
             })}
           />
         </div>
+        <Footer />
       </section>
     </>
   );
