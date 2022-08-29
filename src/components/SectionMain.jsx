@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from './Footer';
 import MainSeries from './MainSeries';
 import MainMovies from './MainMovies';
+import { Routes, Route, NavLink } from 'react-router-dom';
 
 export default function SectionMain() {
   return (
@@ -9,19 +10,40 @@ export default function SectionMain() {
       <div className="search-area margin-bottom-mid">
         <ul className="search-area-list">
           <li className="search-area-list-item">
-            <a href="#" className="search-area-list-item-link">
+            <NavLink
+              to={'/movies'}
+              className={({ isActive }) =>
+                isActive
+                  ? 'search-area-list-item-link-active'
+                  : 'search-area-list-item-link'
+              }
+            >
               Movies
-            </a>
+            </NavLink>
           </li>
           <li className="search-area-list-item">
-            <a href="#" className="search-area-list-item-link">
+            <NavLink
+              to={'/tv-shows'}
+              className={({ isActive }) =>
+                isActive
+                  ? 'search-area-list-item-link-active'
+                  : 'search-area-list-item-link'
+              }
+            >
               TV Shows
-            </a>
+            </NavLink>
           </li>
           <li className="search-area-list-item">
-            <a href="#" className="search-area-list-item-link">
+            <NavLink
+              to={'/people'}
+              className={({ isActive }) =>
+                isActive
+                  ? 'search-area-list-item-link-active'
+                  : 'search-area-list-item-link'
+              }
+            >
               Anime
-            </a>
+            </NavLink>
           </li>
         </ul>
         <div className="search-area-box">
@@ -36,8 +58,14 @@ export default function SectionMain() {
           <ion-icon name="funnel-outline" class="search-area-box-icon" />
         </div>
       </div>
-      {/* <MainSeries /> */}
-      <MainMovies />
+
+      <Routes>
+        <Route path="/" element={<MainMovies />} />
+        <Route path="/movies" element={<MainMovies />} />
+        <Route path="/tv-shows" element={<MainSeries />} />
+        {/* <Route path="/people" element={<People />} /> */}
+      </Routes>
+
       <Footer />
     </section>
   );

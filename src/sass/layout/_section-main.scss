@@ -33,6 +33,24 @@
         font-size: 2rem;
         font-weight: 500;
         position: relative;
+
+        &-active {
+          color: $color-button;
+          text-decoration: none;
+          font-size: 2rem;
+          font-weight: 500;
+          position: relative;
+          &::after {
+            position: absolute;
+            content: '';
+            bottom: -1rem;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background-color: $color-button;
+            transition: all 0.2s;
+          }
+        }
         &::after {
           position: absolute;
           content: '';
@@ -45,11 +63,15 @@
         }
         transition: all 0.2s;
 
-        &:hover {
+        &:hover,
+        &:active {
           color: $color-button;
         }
 
         &:hover::after {
+          width: 100%;
+        }
+        &:active::after {
           width: 100%;
         }
       }
