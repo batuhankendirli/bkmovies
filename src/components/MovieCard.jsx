@@ -3,8 +3,7 @@ import { genres } from '../genreData';
 
 export default function MovieCard(props) {
   const genresText = [];
-  const propsLength =
-    props.genres.length == 1 ? props.genres.length : props.genres.length - 1;
+  const propsLength = props.genres.length == 1 ? props.genres.length : 2;
   for (let i = 0; i < propsLength; i++) {
     for (let j = 0; j < genres.length; j++) {
       if (props.genres[i] === genres[j].id) {

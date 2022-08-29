@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 
-export default function MainSlide() {
+export default function SeriesSlide() {
   let active = 0;
   const [link, setLink] = React.useState('');
   const [breakingBad, setBreakingBad] = React.useState({});

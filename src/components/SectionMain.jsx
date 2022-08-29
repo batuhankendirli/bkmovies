@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from './Footer';
 import MainSeries from './MainSeries';
+import MainMovies from './MainMovies';
 
 export default function SectionMain() {
   return (
@@ -35,7 +36,8 @@ export default function SectionMain() {
           <ion-icon name="funnel-outline" class="search-area-box-icon" />
         </div>
       </div>
-      <MainSeries />
+      {/* <MainSeries /> */}
+      <MainMovies />
       <Footer />
     </section>
   );
