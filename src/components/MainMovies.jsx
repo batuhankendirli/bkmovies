@@ -14,7 +14,7 @@ export default function MainMovies() {
   const [popularAnimation, setPopularAnimation] = React.useState([]);
   const [popularCrime, setPopularCrime] = React.useState([]);
   const [popularMystery, setPopularMystery] = React.useState([]);
-  const [popularWar, setPopularWar] = React.useState([]);
+
   const [trailerActive, setTrailerActive] = React.useState(false);
   const [youtubePlayer, setYoutubePlayer] = React.useState('');
 
@@ -61,8 +61,6 @@ export default function MainMovies() {
         setPopularCrime(allGenreType);
       } else if (id === 9648) {
         setPopularMystery(allGenreType);
-      } else if (id === 10752) {
-        setPopularWar(allGenreType);
       }
     }
     getGenreType(18);
@@ -71,7 +69,6 @@ export default function MainMovies() {
     getGenreType(16);
     getGenreType(80);
     getGenreType(9648);
-    getGenreType(10752);
   }, []);
 
   async function watchTrailer(id) {
@@ -279,27 +276,6 @@ export default function MainMovies() {
         {popularMystery.length === 10 ? (
           <ShowSlide
             data={popularMystery.map((item) => {
-              return (
-                <MovieCard
-                  image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-                  title={item.title}
-                  genres={''}
-                  rate={item.vote_average}
-                  key={nanoid()}
-                  watchTrailer={() => watchTrailer(item.id)}
-                />
-              );
-            })}
-          />
-        ) : (
-          <LoadingAnimation />
-        )}
-      </div>
-      <h2 className="section-main-header">War</h2>
-      <div className="series-wrapper">
-        {popularWar.length === 10 ? (
-          <ShowSlide
-            data={popularWar.map((item) => {
               return (
                 <MovieCard
                   image={`https://image.tmdb.org/t/p/original${item.poster_path}`}

@@ -1,11 +1,11 @@
 .section-main {
   position: relative;
-  left: 20rem;
-  right: 30rem;
+  // left: 20rem;
+  // right: 30rem;
 
   // temporary
-  height: 100%;
-  width: calc(100% - 50rem);
+  // height: 100%;
+  width: calc(100% - 30rem);
   background-color: $color-secondary;
   padding: 4rem 4.8rem;
 
@@ -84,8 +84,9 @@
     align-items: center;
     gap: 1.6rem;
     padding: 1.2rem 1.6rem;
+    width: 28rem;
     border-radius: 10px;
-
+    position: relative;
     &-input {
       border: none;
       display: block;
