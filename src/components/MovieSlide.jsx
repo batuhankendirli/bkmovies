@@ -17,7 +17,7 @@ export default function SeriesSlide() {
   const [fightClub, setFightClub] = React.useState({});
   const [noCFOM, setNoCFOM] = React.useState({});
   const [darkKnight, setDarkKnight] = React.useState({});
-
+  const [movieIndex, setMovieIndex] = React.useState(0);
   const [trailerActive, setTrailerActive] = React.useState(false);
 
   React.useEffect(() => {
@@ -32,7 +32,7 @@ export default function SeriesSlide() {
       if (id == 550) {
         setFightClub(data);
       }
-      if (id == 6977) {
+      if (id == 264660) {
         setNoCFOM(data);
       }
       if (id == 155) {
@@ -40,11 +40,10 @@ export default function SeriesSlide() {
       }
     }
     getSeries(550);
-    getSeries(6977);
+    getSeries(264660);
     getSeries(155);
   }, []);
 
-  let serieIndex = 0;
   function playTrailer(index) {
     let trailerLink;
     if (index === 0) {
@@ -75,9 +74,9 @@ export default function SeriesSlide() {
         navigation
         loop={true}
         grabCursor={true}
-        autoplay={{ delay: 4500, disableOnInteraction: false }}
+        autoplay={{ delay: 6500, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        onSlideChange={(index) => (serieIndex = index.realIndex)}
+        onSlideChange={(index) => setMovieIndex(index.realIndex)}
       >
         <SwiperSlide>
           <Image
@@ -117,7 +116,7 @@ export default function SeriesSlide() {
           <span className="btn-blue">
             <button
               className="btn-blue-watchnow"
-              onClick={() => playTrailer(serieIndex)}
+              onClick={() => playTrailer(movieIndex)}
             >
               Watch Trailer
             </button>

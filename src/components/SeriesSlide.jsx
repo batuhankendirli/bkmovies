@@ -12,11 +12,11 @@ import 'swiper/css/pagination';
 import 'swiper/css';
 
 export default function SeriesSlide() {
-  let active = 0;
   const [link, setLink] = React.useState('');
   const [breakingBad, setBreakingBad] = React.useState({});
   const [chernobyl, setChernobyl] = React.useState({});
   const [rickAndMorty, setRickAndMorty] = React.useState({});
+  const [serieIndex, setSerieIndex] = React.useState(0);
 
   const [trailerActive, setTrailerActive] = React.useState(false);
 
@@ -44,7 +44,7 @@ export default function SeriesSlide() {
     getSeries(60625);
   }, []);
 
-  let serieIndex = 0;
+  // let serieIndex = 0;
   function playTrailer(index) {
     let trailerLink;
     if (index === 0) {
@@ -75,9 +75,9 @@ export default function SeriesSlide() {
         navigation
         loop={true}
         grabCursor={true}
-        autoplay={{ delay: 4500, disableOnInteraction: false }}
+        autoplay={{ delay: 6500, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        onSlideChange={(index) => (serieIndex = index.realIndex)}
+        onSlideChange={(index) => setSerieIndex(index.realIndex)}
       >
         <SwiperSlide>
           <Image
