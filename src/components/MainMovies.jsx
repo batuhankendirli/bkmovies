@@ -151,7 +151,7 @@ export default function MainMovies() {
             data={popularMovies.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                   title={item.title}
                   genres={item.genre_ids}
                   rate={item.vote_average}
@@ -172,7 +172,7 @@ export default function MainMovies() {
             data={popularDrama.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
@@ -193,7 +193,7 @@ export default function MainMovies() {
             data={popularThriller.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
@@ -214,7 +214,7 @@ export default function MainMovies() {
             data={popularScienceFiction.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
@@ -236,7 +236,7 @@ export default function MainMovies() {
             data={popularAnimation.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
@@ -257,7 +257,7 @@ export default function MainMovies() {
             data={popularCrime.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
@@ -278,7 +278,7 @@ export default function MainMovies() {
             data={popularMystery.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}

@@ -83,7 +83,7 @@ export default function SeriesSlide() {
           <Image
             img={
               breakingBad.backdrop_path &&
-              `https://image.tmdb.org/t/p/original${breakingBad.backdrop_path}`
+              `https://image.tmdb.org/t/p/w1280${breakingBad.backdrop_path}`
             }
             name={breakingBad.name}
           />
@@ -92,7 +92,7 @@ export default function SeriesSlide() {
           <Image
             img={
               chernobyl.backdrop_path &&
-              `https://image.tmdb.org/t/p/original${chernobyl.backdrop_path}`
+              `https://image.tmdb.org/t/p/w1280${chernobyl.backdrop_path}`
             }
             name={chernobyl.name}
           />
@@ -101,7 +101,7 @@ export default function SeriesSlide() {
           <Image
             img={
               rickAndMorty.backdrop_path &&
-              `https://image.tmdb.org/t/p/original${rickAndMorty.backdrop_path}`
+              `https://image.tmdb.org/t/p/w1280${rickAndMorty.backdrop_path}`
             }
             name={rickAndMorty.name}
           />

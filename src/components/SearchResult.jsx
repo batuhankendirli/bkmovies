@@ -53,13 +53,13 @@ export default function SearchResult(props) {
           {type === 'movie' && (
             <div className="searched-item" rel={animationParent}>
               <img
-                src={`https://image.tmdb.org/t/p/original${detailedSearch.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w1280${detailedSearch.backdrop_path}`}
                 alt={`Photo of ${detailedSearch.title}`}
                 className="searched-item-img"
               />
               <div className="searched-item-box">
                 <img
-                  src={`https://image.tmdb.org/t/p/original${detailedSearch.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w342${detailedSearch.poster_path}`}
                   alt={`Poster of ${detailedSearch.title}`}
                   className="searched-item-box-img"
                 />
@@ -101,13 +101,13 @@ export default function SearchResult(props) {
           {type === 'tv' && (
             <div className="searched-item" rel={animationParent}>
               <img
-                src={`https://image.tmdb.org/t/p/original${detailedSearch.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w1280${detailedSearch.backdrop_path}`}
                 alt={`Photo of ${detailedSearch.name}`}
                 className="searched-item-img"
               />
               <div className="searched-item-box">
                 <img
-                  src={`https://image.tmdb.org/t/p/original${detailedSearch.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w342${detailedSearch.poster_path}`}
                   alt={`Poster of ${detailedSearch.name}`}
                   className="searched-item-box-img"
                 />

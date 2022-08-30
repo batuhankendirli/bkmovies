@@ -82,7 +82,7 @@ export default function SeriesSlide() {
           <Image
             img={
               fightClub.backdrop_path &&
-              `https://image.tmdb.org/t/p/original${fightClub.backdrop_path}`
+              `https://image.tmdb.org/t/p/w1280${fightClub.backdrop_path}`
             }
             name={fightClub.title}
           />
@@ -91,7 +91,7 @@ export default function SeriesSlide() {
           <Image
             img={
               noCFOM.backdrop_path &&
-              `https://image.tmdb.org/t/p/original${noCFOM.backdrop_path}`
+              `https://image.tmdb.org/t/p/w1280${noCFOM.backdrop_path}`
             }
             name={noCFOM.title}
           />
@@ -100,7 +100,7 @@ export default function SeriesSlide() {
           <Image
             img={
               darkKnight.backdrop_path &&
-              `https://image.tmdb.org/t/p/original${darkKnight.backdrop_path}`
+              `https://image.tmdb.org/t/p/w1280${darkKnight.backdrop_path}`
             }
             name={darkKnight.title}
           />
