@@ -1,6 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+
 export default function SearchResult(props) {
+  const [animationParent] = useAutoAnimate();
   let { id } = useParams();
   const pathMovie = window.location.pathname.includes('/movie/');
   const pathTV = window.location.pathname.includes('/tv/');
@@ -48,7 +51,7 @@ export default function SearchResult(props) {
       {detailedSearch.length !== 0 ? (
         <>
           {type === 'movie' && (
-            <div className="searched-item">
+            <div className="searched-item" rel={animationParent}>
               <img
                 src={`https://image.tmdb.org/t/p/original${detailedSearch.backdrop_path}`}
                 alt={`Photo of ${detailedSearch.title}`}
@@ -96,7 +99,7 @@ export default function SearchResult(props) {
             </div>
           )}
           {type === 'tv' && (
-            <div className="searched-item">
+            <div className="searched-item" rel={animationParent}>
               <img
                 src={`https://image.tmdb.org/t/p/original${detailedSearch.backdrop_path}`}
                 alt={`Photo of ${detailedSearch.name}`}

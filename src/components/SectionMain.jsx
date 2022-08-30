@@ -3,14 +3,16 @@ import Footer from './Footer';
 import MainSeries from './MainSeries';
 import MainMovies from './MainMovies';
 import SearchResult from './SearchResult';
+import { nanoid } from 'nanoid';
 
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Routes, Route, NavLink, Link } from 'react-router-dom';
 
 export default function SectionMain() {
   const [search, setSearch] = React.useState('');
   const [searchResults, setSearchResults] = React.useState([]);
   const [clickedSearch, setClickedSearch] = React.useState('');
-
+  const [animationParent] = useAutoAnimate();
   const path = window.location.pathname.includes('/tv/') ? 'tv' : 'movie';
 
   function searchMovie(event) {
@@ -51,6 +53,7 @@ export default function SectionMain() {
         to={`/${item.media_type}/${item.id}`}
         className="search-item"
         onClick={() => searchItem(item)}
+        key={nanoid()}
       >
         <img
           src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
@@ -74,7 +77,7 @@ export default function SectionMain() {
   });
 
   return (
-    <section className="section-main">
+    <section className="section-main" ref={animationParent}>
       <div className="search-area margin-bottom-mid">
         <ul className="search-area-list">
           <li className="search-area-list-item">
