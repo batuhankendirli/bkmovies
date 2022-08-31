@@ -8,7 +8,7 @@ export default function ActorCard(props) {
         src={
           props.image
             ? `https://image.tmdb.org/t/p/w200${props.image}`
-            : '/public/img/person.png'
+            : '/img/person.png'
         }
         alt={`Photo of ${props.name}`}
       />

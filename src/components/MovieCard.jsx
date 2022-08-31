@@ -33,7 +33,7 @@ export default function MovieCard(props) {
   return (
     <div className="card">
       <img
-        src={props.image ? props.image : '/public/img/no_img.jpg'}
+        src={props.image ? props.image : '/img/no_img.jpg'}
         alt={`Poster of ${props.title}`}
         className="card-img"
       />

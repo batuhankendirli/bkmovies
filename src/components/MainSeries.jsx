@@ -150,7 +150,7 @@ export default function MainSeries() {
                   image={
                     item.poster_path
                       ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
-                      : '/public/img/no_img.jpg'
+                      : '/img/no_img.jpg'
                   }
                   title={item.name}
                   genres={item.genre_ids}
@@ -178,7 +178,7 @@ export default function MainSeries() {
                   image={
                     item.poster_path
                       ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
-                      : '/public/img/no_img.jpg'
+                      : '/img/no_img.jpg'
                   }
                   title={item.name}
                   genres={''}
@@ -206,7 +206,7 @@ export default function MainSeries() {
                   image={
                     item.poster_path
                       ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
-                      : '/public/img/no_img.jpg'
+                      : '/img/no_img.jpg'
                   }
                   title={item.name}
                   genres={''}
@@ -234,7 +234,7 @@ export default function MainSeries() {
                   image={
                     item.poster_path
                       ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
-                      : '/public/img/no_img.jpg'
+                      : '/img/no_img.jpg'
                   }
                   title={item.name}
                   genres={''}
@@ -263,7 +263,7 @@ export default function MainSeries() {
                   image={
                     item.poster_path
                       ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
-                      : '/public/img/no_img.jpg'
+                      : '/img/no_img.jpg'
                   }
                   title={item.name}
                   genres={''}

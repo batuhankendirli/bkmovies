@@ -60,7 +60,7 @@ export default function SectionMain() {
           src={
             item.poster_path
               ? `https://image.tmdb.org/t/p/w92${item.poster_path}`
-              : '/public/img/no_img.jpg'
+              : '/img/no_img.jpg'
           }
           alt={item.title}
           className="search-item-img"

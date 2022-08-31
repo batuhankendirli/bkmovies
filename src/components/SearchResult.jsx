@@ -136,7 +136,7 @@ export default function SearchResult(props) {
           }/credits?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`
         );
         const dataActor = await resActor.json();
-        console.log(dataActor);
+
         setActors(dataActor.cast.slice(0, 10));
       }
     }
@@ -169,7 +169,7 @@ export default function SearchResult(props) {
                   src={
                     detailedSearch.backdrop_path
                       ? `https://image.tmdb.org/t/p/w1280${detailedSearch.backdrop_path}`
-                      : '/public/img/background.jpg'
+                      : '/img/background.jpg'
                   }
                   alt={`Photo of ${detailedSearch.title}`}
                   className="searched-item-img"
@@ -179,7 +179,7 @@ export default function SearchResult(props) {
                     src={
                       detailedSearch.poster_path
                         ? `https://image.tmdb.org/t/p/w342${detailedSearch.poster_path}`
-                        : '/public/img/no_img.jpg'
+                        : '/img/no_img.jpg'
                     }
                     alt={`Poster of ${detailedSearch.title}`}
                     className="searched-item-box-img"
@@ -263,7 +263,7 @@ export default function SearchResult(props) {
                   src={
                     detailedSearch.backdrop_path
                       ? `https://image.tmdb.org/t/p/w1280${detailedSearch.backdrop_path}`
-                      : '/public/img/background.jpg'
+                      : '/img/background.jpg'
                   }
                   alt={`Photo of ${detailedSearch.name}`}
                   className="searched-item-img"
@@ -273,7 +273,7 @@ export default function SearchResult(props) {
                     src={
                       detailedSearch.poster_path
                         ? `https://image.tmdb.org/t/p/w342${detailedSearch.poster_path}`
-                        : '/public/img/no_img.jpg'
+                        : '/img/no_img.jpg'
                     }
                     alt={`Poster of ${detailedSearch.name}`}
                     className="searched-item-box-img"
@@ -366,7 +366,7 @@ export default function SearchResult(props) {
                   image={
                     item.poster_path
                       ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
-                      : '/public/img/no_img.jpg'
+                      : '/img/no_img.jpg'
                   }
                   title={item.name || item.title}
                   genres={item.genre_ids}
