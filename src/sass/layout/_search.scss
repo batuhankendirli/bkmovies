@@ -174,3 +174,10 @@ input[type='search']::-webkit-search-results-decoration {
     }
   }
 }
+
+.search-buttons {
+  display: flex;
+  align-items: center;
+  gap: 2.8rem;
+  margin-top: 2rem;
+}

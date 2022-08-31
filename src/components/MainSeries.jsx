@@ -147,12 +147,19 @@ export default function MainSeries() {
             data={popularShows.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.name}
                   genres={item.genre_ids}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'tv'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -168,12 +175,19 @@ export default function MainSeries() {
             data={popularDrama.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.name}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'tv'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -189,12 +203,19 @@ export default function MainSeries() {
             data={popularCrime.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.name}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'tv'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -210,12 +231,19 @@ export default function MainSeries() {
             data={popularMystery.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.name}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'tv'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -232,12 +260,19 @@ export default function MainSeries() {
             data={popularComedy.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.name}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'tv'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}

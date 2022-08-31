@@ -17,7 +17,6 @@ export default function MainMovies() {
 
   const [trailerActive, setTrailerActive] = React.useState(false);
   const [youtubePlayer, setYoutubePlayer] = React.useState('');
-
   React.useEffect(() => {
     async function getGenreType(id) {
       const res = await fetch(
@@ -151,12 +150,19 @@ export default function MainMovies() {
             data={popularMovies.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.title}
                   genres={item.genre_ids}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'movie'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -172,12 +178,19 @@ export default function MainMovies() {
             data={popularDrama.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'movie'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -193,12 +206,19 @@ export default function MainMovies() {
             data={popularThriller.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'movie'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -214,12 +234,19 @@ export default function MainMovies() {
             data={popularScienceFiction.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'movie'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -236,12 +263,19 @@ export default function MainMovies() {
             data={popularAnimation.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'movie'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -257,12 +291,19 @@ export default function MainMovies() {
             data={popularCrime.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'movie'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}
@@ -278,12 +319,19 @@ export default function MainMovies() {
             data={popularMystery.map((item) => {
               return (
                 <MovieCard
-                  image={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                  image={
+                    item.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
+                      : '/public/img/no_img.jpg'
+                  }
                   title={item.title}
                   genres={''}
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  type={'movie'}
+                  id={item.id}
+                  item={item}
                 />
               );
             })}

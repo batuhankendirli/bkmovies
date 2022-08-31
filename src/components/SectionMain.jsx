@@ -4,6 +4,7 @@ import MainSeries from './MainSeries';
 import MainMovies from './MainMovies';
 import SearchResult from './SearchResult';
 import { nanoid } from 'nanoid';
+import { Context } from '../Context';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Routes, Route, NavLink, Link } from 'react-router-dom';
@@ -11,7 +12,8 @@ import { Routes, Route, NavLink, Link } from 'react-router-dom';
 export default function SectionMain() {
   const [search, setSearch] = React.useState('');
   const [searchResults, setSearchResults] = React.useState([]);
-  const [clickedSearch, setClickedSearch] = React.useState('');
+
+  const { clickedSearch, setClickedSearch } = React.useContext(Context);
   const [animationParent] = useAutoAnimate();
   const path = window.location.pathname.includes('/tv/') ? 'tv' : 'movie';
 
@@ -19,7 +21,6 @@ export default function SectionMain() {
     const { value } = event.target;
     setSearch(value);
   }
-
   React.useEffect(() => {
     async function getSearch() {
       if (search.length !== 0) {
@@ -56,7 +57,11 @@ export default function SectionMain() {
         key={nanoid()}
       >
         <img
-          src={`https://image.tmdb.org/t/p/w92${item.poster_path}`}
+          src={
+            item.poster_path
+              ? `https://image.tmdb.org/t/p/w92${item.poster_path}`
+              : '/public/img/no_img.jpg'
+          }
           alt={item.title}
           className="search-item-img"
         />
@@ -141,6 +146,7 @@ export default function SectionMain() {
           path={`/${path}/:id`}
           element={<SearchResult item={clickedSearch} />}
         />
+
         <Route path="/movies" element={<MainMovies />} />
         <Route path="/tv-shows" element={<MainSeries />} />
         {/* <Route path="/people" element={<People />} /> */}
