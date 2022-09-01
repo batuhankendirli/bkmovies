@@ -5,6 +5,7 @@ import MainMovies from './MainMovies';
 import SearchResult from './SearchResult';
 import { nanoid } from 'nanoid';
 import { Context } from '../Context';
+import Logo from './Logo';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Routes, Route, NavLink, Link } from 'react-router-dom';
@@ -85,6 +86,14 @@ export default function SectionMain() {
     <section className="section-main" ref={animationParent}>
       <div className="search-area margin-bottom-mid">
         <ul className="search-area-list">
+          <NavLink
+            to={'/'}
+            className={({ isActive }) =>
+              isActive ? 'navigation-logo-active' : 'navigation-logo'
+            }
+          >
+            <Logo />
+          </NavLink>
           <li className="search-area-list-item">
             <NavLink
               to={'/movies'}
@@ -107,18 +116,6 @@ export default function SectionMain() {
               }
             >
               TV Shows
-            </NavLink>
-          </li>
-          <li className="search-area-list-item">
-            <NavLink
-              to={'/people'}
-              className={({ isActive }) =>
-                isActive
-                  ? 'search-area-list-item-link-active'
-                  : 'search-area-list-item-link'
-              }
-            >
-              Anime
             </NavLink>
           </li>
         </ul>
@@ -149,7 +146,6 @@ export default function SectionMain() {
 
         <Route path="/movies" element={<MainMovies />} />
         <Route path="/tv-shows" element={<MainSeries />} />
-        {/* <Route path="/people" element={<People />} /> */}
       </Routes>
 
       <Footer />

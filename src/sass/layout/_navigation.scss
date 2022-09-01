@@ -9,16 +9,35 @@
   width: 20rem;
 
   &-logo {
-    padding: 0 2.8rem;
-    margin-bottom: 0.4rem;
+    // padding: 0 2.8rem;
+    cursor: pointer;
+    position: relative;
+    &:hover svg path {
+      fill: $color-button;
+    }
+    &::after {
+      position: absolute;
+      content: '';
+      height: 100%;
+      width: 1px;
+      background-color: rgb(33, 36, 45);
+      top: 0;
+      right: -3em;
+    }
   }
 
   &-logo svg {
-    width: 64px;
-    height: 64px;
+    width: 156px;
     display: flex;
     align-items: center;
     justify-content: center;
+    & path {
+      transition: all 0.3s;
+    }
+  }
+
+  &-logo-active svg path {
+    fill: $color-button;
   }
 
   &-list {
