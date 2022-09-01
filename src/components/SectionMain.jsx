@@ -9,6 +9,7 @@ import Logo from './Logo';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Routes, Route, NavLink, Link } from 'react-router-dom';
+import MainHome from './MainHome';
 
 export default function SectionMain() {
   const [search, setSearch] = React.useState('');
@@ -138,7 +139,7 @@ export default function SectionMain() {
         </div>
       </div>
       <Routes>
-        <Route path="/" element={<MainMovies />} />
+        <Route path="/" element={<MainHome />} />
         <Route
           path={`/${path}/:id`}
           element={<SearchResult item={clickedSearch} />}

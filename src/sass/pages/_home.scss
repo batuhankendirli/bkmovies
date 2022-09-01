@@ -1,0 +1,10 @@
+.home {
+  // background-color: rgb(27, 34, 43);
+  padding: 3.2rem 0;
+  height: 100vh;
+  &-header {
+    color: $color-text-primary;
+    text-align: center;
+    font-size: 4.8rem;
+  }
+}
