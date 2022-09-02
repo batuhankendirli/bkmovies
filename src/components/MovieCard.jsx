@@ -4,7 +4,7 @@ import { genres } from '../genreData';
 import { Routes, Route, NavLink, Link, useNavigate } from 'react-router-dom';
 import { Context } from '../Context';
 export default function MovieCard(props) {
-  const {  setClickedSearch } = React.useContext(Context);
+  const { setClickedSearch } = React.useContext(Context);
   let history = useNavigate();
 
   const genresText = [];

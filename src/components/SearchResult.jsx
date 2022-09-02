@@ -13,6 +13,9 @@ export default function SearchResult(props) {
   const [trailerActive, setTrailerActive] = React.useState(false);
   const [youtubePlayer, setYoutubePlayer] = React.useState('');
 
+  const [detailedSearch, setDetailedSearch] = React.useState([]);
+  const [type, setType] = React.useState('');
+
   const [recommended, setRecommended] = React.useState([]);
   const [actors, setActors] = React.useState([]);
 
@@ -71,23 +74,22 @@ export default function SearchResult(props) {
     });
   }
 
-  const [detailedSearch, setDetailedSearch] = React.useState([]);
-  const [type, setType] = React.useState('');
   React.useEffect(() => {
     async function getResult() {
-      if (props.item.media_type === 'movie' || pathMovie) {
+      if (pathMovie) {
         const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${props.item.id || id}?api_key=${
+          `https://api.themoviedb.org/3/movie/${id || props.item.id}?api_key=${
             import.meta.env.VITE_API_KEY
           }&language=en-US`
         );
+
         const data = await res.json();
         setDetailedSearch(data);
         setType('movie');
 
         const recRes = await fetch(
           `https://api.themoviedb.org/3/movie/${
-            props.item.id || id
+            id || props.item.id
           }/recommendations?api_key=${
             import.meta.env.VITE_API_KEY
           }&language=en-US&page=1`
@@ -99,14 +101,14 @@ export default function SearchResult(props) {
 
         const resActor = await fetch(
           `https://api.themoviedb.org/3/movie/${
-            props.item.id || id
+            id || props.item.id
           }/credits?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`
         );
         const dataActor = await resActor.json();
         setActors(dataActor.cast.slice(0, 10));
-      } else if (props.item.media_type === 'tv' || pathTV) {
+      } else if (pathTV) {
         const res = await fetch(
-          `https://api.themoviedb.org/3/tv/${props.item.id || id}?api_key=${
+          `https://api.themoviedb.org/3/tv/${id || props.item.id}?api_key=${
             import.meta.env.VITE_API_KEY
           }&language=en-US`
         );
@@ -116,7 +118,7 @@ export default function SearchResult(props) {
 
         const recRes = await fetch(
           `https://api.themoviedb.org/3/tv/${
-            props.item.id || id
+            id || props.item.id
           }/recommendations?api_key=${
             import.meta.env.VITE_API_KEY
           }&language=en-US&page=1`
@@ -132,7 +134,7 @@ export default function SearchResult(props) {
 
         const resActor = await fetch(
           `https://api.themoviedb.org/3/tv/${
-            props.item.id || id
+            id || props.item.id
           }/credits?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`
         );
         const dataActor = await resActor.json();

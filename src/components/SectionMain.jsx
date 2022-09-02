@@ -141,7 +141,7 @@ export default function SectionMain() {
       <Routes>
         <Route path="/" element={<MainHome />} />
         <Route
-          path={`/${path}/:id`}
+          path={`/:${path}/:id`}
           element={<SearchResult item={clickedSearch} />}
         />
 
