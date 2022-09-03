@@ -1,9 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
-import { nanoid } from 'nanoid';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
-import { useSwiperSlide } from 'swiper/react';
 
 import Image from './Image';
 
@@ -44,7 +42,6 @@ export default function SeriesSlide() {
     getSeries(60625);
   }, []);
 
-  // let serieIndex = 0;
   function playTrailer(index) {
     let trailerLink;
     if (index === 0) {

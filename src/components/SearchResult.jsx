@@ -240,7 +240,6 @@ export default function SearchResult(props) {
               </div>
               <h2 className="section-main-header">Cast</h2>
 
-              {/* <div className="actor-box">{mappedActors}</div> */}
               {actors.length > 0 ? (
                 <ActorSlide
                   data={actors.map((item) => {

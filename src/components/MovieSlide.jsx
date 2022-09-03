@@ -1,9 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
-import { nanoid } from 'nanoid';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
-import { useSwiperSlide } from 'swiper/react';
 
 import Image from './Image';
 
@@ -12,7 +10,6 @@ import 'swiper/css/pagination';
 import 'swiper/css';
 
 export default function SeriesSlide() {
-  let active = 0;
   const [link, setLink] = React.useState('');
   const [fightClub, setFightClub] = React.useState({});
   const [noCFOM, setNoCFOM] = React.useState({});

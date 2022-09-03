@@ -1,12 +1,10 @@
 import React from 'react';
 import { genres } from '../genreData';
 
-import { Routes, Route, NavLink, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, NavLink, Link } from 'react-router-dom';
 import { Context } from '../Context';
 export default function MovieCard(props) {
   const { setClickedSearch } = React.useContext(Context);
-  let history = useNavigate();
-
   const genresText = [];
   const propsLength =
     props.genres.length == 1
@@ -26,8 +24,7 @@ export default function MovieCard(props) {
 
   function handleClick(item) {
     setClickedSearch(item);
-    // history.push(`/${item.media_type}/${item.id}`);
-    // history.replace(redirectPath);
+
     document.documentElement.scrollTop = 0;
   }
   return (

@@ -132,7 +132,7 @@ export default function SectionMain() {
             onChange={searchMovie}
             autoComplete="off"
           />
-          {/* <ion-icon name="funnel-outline" class="search-area-box-icon" /> */}
+
           {search.length > 0 && searchResults.length > 0 && (
             <div className="search-container">{mappedSearch}</div>
           )}

@@ -27,7 +27,7 @@ export default function MainSeries() {
       const filteredData = data.results.filter((item) =>
         item.genre_ids.includes(id)
       );
-      // .sort((a, b) => b.vote_count - a.vote_count);
+
       const allGenreType = filteredData.slice(0, 10);
       let i = 2;
       do {
@@ -40,7 +40,6 @@ export default function MainSeries() {
         allGenreType.push(
           ...genreData.results
             .filter((item) => item.genre_ids.includes(id))
-            // .sort((a, b) => b.vote_count - a.vote_count)
             .slice(0, 10 - allGenreType.length)
         );
         i++;
@@ -105,7 +104,6 @@ export default function MainSeries() {
       );
     });
   }
-  //
 
   function LoadingAnimation() {
     return (
