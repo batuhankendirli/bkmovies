@@ -39,7 +39,7 @@ export default function SearchResult(props) {
     const res = await fetch(
       `https://api.themoviedb.org/3/${
         type === 'movie' ? 'movie' : 'tv'
-      }/${id}/videos?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`
+      }/${id}/videos?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US`
     );
     const data = await res.json();
     const videoObj =
@@ -79,7 +79,7 @@ export default function SearchResult(props) {
       if (pathMovie) {
         const res = await fetch(
           `https://api.themoviedb.org/3/movie/${id || props.item.id}?api_key=${
-            import.meta.env.VITE_API_KEY
+            import.meta.env.VITE_TMDB_API_KEY
           }&language=en-US`
         );
 
@@ -91,7 +91,7 @@ export default function SearchResult(props) {
           `https://api.themoviedb.org/3/movie/${
             id || props.item.id
           }/recommendations?api_key=${
-            import.meta.env.VITE_API_KEY
+            import.meta.env.VITE_TMDB_API_KEY
           }&language=en-US&page=1`
         );
         const recData = await recRes.json();
@@ -102,14 +102,14 @@ export default function SearchResult(props) {
         const resActor = await fetch(
           `https://api.themoviedb.org/3/movie/${
             id || props.item.id
-          }/credits?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`
+          }/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US`
         );
         const dataActor = await resActor.json();
         setActors(dataActor.cast.slice(0, 10));
       } else if (pathTV) {
         const res = await fetch(
           `https://api.themoviedb.org/3/tv/${id || props.item.id}?api_key=${
-            import.meta.env.VITE_API_KEY
+            import.meta.env.VITE_TMDB_API_KEY
           }&language=en-US`
         );
         const data = await res.json();
@@ -120,7 +120,7 @@ export default function SearchResult(props) {
           `https://api.themoviedb.org/3/tv/${
             id || props.item.id
           }/recommendations?api_key=${
-            import.meta.env.VITE_API_KEY
+            import.meta.env.VITE_TMDB_API_KEY
           }&language=en-US&page=1`
         );
         const recData = await recRes.json();
@@ -135,7 +135,7 @@ export default function SearchResult(props) {
         const resActor = await fetch(
           `https://api.themoviedb.org/3/tv/${
             id || props.item.id
-          }/credits?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`
+          }/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US`
         );
         const dataActor = await resActor.json();
 

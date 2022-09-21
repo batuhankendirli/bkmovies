@@ -28,7 +28,7 @@ export default function SectionMain() {
       if (search.length !== 0) {
         const res = await fetch(
           `https://api.themoviedb.org/3/search/multi?api_key=${
-            import.meta.env.VITE_API_KEY
+            import.meta.env.VITE_TMDB_API_KEY
           }&language=en-US&query=${search || ''}&page=1&include_adult=false`
         );
         const data = await res.json();

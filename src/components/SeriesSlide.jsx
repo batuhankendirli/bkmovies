@@ -22,7 +22,7 @@ export default function SeriesSlide() {
     async function getSeries(id) {
       const res = await fetch(
         `https://api.themoviedb.org/3/tv/${id}?api_key=${
-          import.meta.env.VITE_API_KEY
+          import.meta.env.VITE_TMDB_API_KEY
         }&language=en-US&append_to_response=videos`
       );
       const data = await res.json();

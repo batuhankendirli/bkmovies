@@ -19,7 +19,7 @@ export default function MainSeries() {
     async function getGenreType(id) {
       const res = await fetch(
         `https://api.themoviedb.org/3/tv/popular?api_key=${
-          import.meta.env.VITE_API_KEY
+          import.meta.env.VITE_TMDB_API_KEY
         }&language=en-US&page=1`
       );
       const data = await res.json();
@@ -33,7 +33,7 @@ export default function MainSeries() {
       do {
         const response = await fetch(
           `https://api.themoviedb.org/3/tv/popular?api_key=${
-            import.meta.env.VITE_API_KEY
+            import.meta.env.VITE_TMDB_API_KEY
           }&language=en-US&page=${i}`
         );
         const genreData = await response.json();
@@ -69,7 +69,7 @@ export default function MainSeries() {
   async function watchTrailer(id) {
     const res = await fetch(
       `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${
-        import.meta.env.VITE_API_KEY
+        import.meta.env.VITE_TMDB_API_KEY
       }&language=en-US`
     );
     const data = await res.json();

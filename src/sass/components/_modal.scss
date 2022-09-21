@@ -1,0 +1,162 @@
+.modal-backdrop {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  backdrop-filter: brightness(25%) blur(10px);
+  z-index: 9988;
+}
+
+.modal-content {
+  z-index: 9999;
+  position: fixed;
+  width: 45rem;
+  height: 50rem;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: $color-primary;
+  padding: 2.4rem;
+  border-radius: 15px;
+}
+
+.modal-content-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+
+  &-title {
+    font-size: 3.2rem;
+    color: $color-text-primary;
+  }
+
+  &-label {
+    align-self: start;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: $color-text-secondary;
+  }
+
+  &-input {
+    align-self: stretch;
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 1.6rem;
+    border: 1px solid $color-text-tertiary;
+    border-radius: 5px;
+    color: $color-primary;
+
+    &::placeholder {
+      color: $color-text-tertiary;
+    }
+
+    &:focus {
+      border: 1px solid transparent;
+      outline: 3px solid rgba($color: $color-text-tertiary, $alpha: 0.5);
+    }
+  }
+
+  &-button {
+    border: none;
+    padding: 1.4rem 2.8rem;
+    background-color: $color-button;
+    border-radius: 1.5rem;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $color-text-primary;
+    transition: all 0.2s;
+    &:hover {
+      cursor: pointer;
+      background-color: $color-button-hover;
+      transform: scale(1.03);
+    }
+  }
+
+  &-forgot {
+    align-self: end;
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: $color-button;
+    margin-top: -1.4rem;
+    transition: all 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      color: $color-button-hover;
+    }
+  }
+
+  &-alternative {
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $color-button;
+    transition: all 0.3s;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      content: '';
+      width: 0px;
+      height: 2px;
+      background-color: $color-button-hover;
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $color-button-hover;
+    }
+    &:hover::after {
+      width: 100%;
+    }
+
+    &-text {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: $color-text-fourth;
+    }
+  }
+}
+
+.form-label-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.modal-close {
+  font-size: 3.2rem;
+  color: rgb(158, 158, 158);
+  align-self: end;
+  transition: all 0.3s;
+
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.alternative-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
