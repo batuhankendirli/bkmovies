@@ -14,15 +14,32 @@ import MainHome from './MainHome';
 export default function SectionMain() {
   const [search, setSearch] = React.useState('');
   const [searchResults, setSearchResults] = React.useState([]);
-
+  const [showResults, setShowResults] = React.useState(false);
   const { clickedSearch, setClickedSearch } = React.useContext(Context);
+  const searchRef = React.useRef(null);
+
   const [animationParent] = useAutoAnimate();
+
   const path = window.location.pathname.includes('/tv/') ? 'tv' : 'movie';
 
   function searchMovie(event) {
     const { value } = event.target;
     setSearch(value);
   }
+
+  React.useEffect(() => {
+    const unfocus = (e) => {
+      if (!e.composedPath().includes(searchRef.current)) {
+        setShowResults(false);
+      } else if (e.composedPath().includes(searchRef.current)) {
+        setShowResults(true);
+      }
+    };
+
+    document.body.addEventListener('click', unfocus);
+    return () => document.body.removeEventListener('click', unfocus);
+  }, []);
+
   React.useEffect(() => {
     async function getSearch() {
       if (search.length !== 0) {
@@ -38,6 +55,7 @@ export default function SectionMain() {
         const slicedData =
           filteredData.length < 3 ? filteredData : filteredData.slice(0, 3);
         setSearchResults(slicedData);
+        setShowResults(true);
       } else if (search.length === 0) {
         setSearchResults([]);
       }
@@ -120,7 +138,7 @@ export default function SectionMain() {
             </NavLink>
           </li>
         </ul>
-        <div className="search-area-box">
+        <div className="search-area-box" ref={searchRef}>
           <ion-icon name="search-outline" class="search-area-box-icon" />
           <input
             type="search"
@@ -133,7 +151,7 @@ export default function SectionMain() {
             autoComplete="off"
           />
 
-          {search.length > 0 && searchResults.length > 0 && (
+          {search.length > 0 && searchResults.length > 0 && showResults && (
             <div className="search-container">{mappedSearch}</div>
           )}
         </div>
