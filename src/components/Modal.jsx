@@ -31,13 +31,16 @@ const Modal = forwardRef((props, ref) => {
       props.title === 'Log in'
         ? await login(userInput.email, userInput.password)
         : await register(userInput.email, userInput.password);
-    setUsetInput({
-      email: '',
-      password: '',
-    });
-    user && setOpen(false);
-  };
 
+    if (user) {
+      setUsetInput({
+        email: '',
+        password: '',
+      });
+      setOpen(false);
+    }
+  };
+  console.log(userInput);
   return (
     <AnimatePresence>
       {open && (
