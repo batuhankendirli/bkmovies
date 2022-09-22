@@ -28,8 +28,8 @@ export default function ShowSlide(props) {
       lazy={true}
       slidesPerView={'auto'}
       freeMode={true}
-      className="series-wrapper"
-      spaceBetween={30}
+      className={`${props.panelTop && 'panel-top'} series-wrapper`}
+      spaceBetween={props.spaceBetween || 30}
       grabCursor={true}
       touchEventsTarget={'container'}
     >

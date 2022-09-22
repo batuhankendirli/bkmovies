@@ -5,6 +5,8 @@ import MovieCard from './MovieCard';
 import ShowSlide from './ShowSlide';
 import { nanoid } from 'nanoid';
 import YouTube from 'react-youtube';
+import { Context } from '../Context';
+import { addMovie, removeMovie } from '../firebase';
 
 export default function MainSeries() {
   const [popularShows, setPopularShows] = React.useState([]);
@@ -14,6 +16,8 @@ export default function MainSeries() {
   const [popularComedy, setPopularComedy] = React.useState([]);
   const [trailerActive, setTrailerActive] = React.useState(false);
   const [youtubePlayer, setYoutubePlayer] = React.useState('');
+
+  const { user, watchLater } = React.useContext(Context);
 
   React.useEffect(() => {
     async function getGenreType(id) {
@@ -116,6 +120,19 @@ export default function MainSeries() {
     );
   }
 
+  const handleWatchLater = async (item, type) => {
+    if (user) {
+      if (watchLater.some((movie) => movie.id === item.id)) {
+        const movie = watchLater.find((movie) => movie.id === item.id);
+        await removeMovie(movie);
+      } else {
+        await addMovie(item, type);
+      }
+    } else {
+      toast.error('Hold it right there! You should log in first.');
+    }
+  };
+
   return (
     <>
       {/* YOUTUBE TRAILER */}
@@ -155,9 +172,11 @@ export default function MainSeries() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'tv')}
                   type={'tv'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -183,9 +202,11 @@ export default function MainSeries() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'tv')}
                   type={'tv'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -211,9 +232,11 @@ export default function MainSeries() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'tv')}
                   type={'tv'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -239,9 +262,11 @@ export default function MainSeries() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'tv')}
                   type={'tv'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -268,9 +293,11 @@ export default function MainSeries() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'tv')}
                   type={'tv'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}

@@ -8,6 +8,8 @@ import ShowSlide from './ShowSlide';
 import MovieCard from './MovieCard';
 import ActorCard from './ActorCard';
 import ActorSlide from './ActorSlide';
+import { Context } from '../Context';
+import { addMovie, removeMovie } from '../firebase';
 
 export default function SearchResult(props) {
   const [trailerActive, setTrailerActive] = React.useState(false);
@@ -18,6 +20,8 @@ export default function SearchResult(props) {
 
   const [recommended, setRecommended] = React.useState([]);
   const [actors, setActors] = React.useState([]);
+
+  const { user, watchLater } = React.useContext(Context);
 
   const [animationParent] = useAutoAnimate();
   let { id } = useParams();
@@ -39,7 +43,9 @@ export default function SearchResult(props) {
     const res = await fetch(
       `https://api.themoviedb.org/3/${
         type === 'movie' ? 'movie' : 'tv'
-      }/${id}/videos?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US`
+      }/${id}/videos?api_key=${
+        import.meta.env.VITE_TMDB_API_KEY
+      }&language=en-US`
     );
     const data = await res.json();
     const videoObj =
@@ -145,6 +151,19 @@ export default function SearchResult(props) {
     getResult();
   }, [props.item, id]);
 
+  const handleWatchLater = async (item, type) => {
+    if (user) {
+      if (watchLater.some((movie) => movie.id === item.id)) {
+        const movie = watchLater.find((movie) => movie.id === item.id);
+        await removeMovie(movie);
+      } else {
+        await addMovie(item, type);
+      }
+    } else {
+      toast.error('Hold it right there! You should log in first.');
+    }
+  };
+
   return (
     <>
       {trailerActive && (
@@ -220,10 +239,18 @@ export default function SearchResult(props) {
                     <div className="search-buttons">
                       <button
                         className="btn-gray-watchlist btn-watchlist"
-                        onClick={props.addWatchLater}
+                        onClick={() =>
+                          handleWatchLater(detailedSearch, 'movie')
+                        }
                       >
                         <ion-icon
-                          name="add-outline"
+                          name={`${
+                            watchLater.some(
+                              (movie) => movie.id === detailedSearch.id
+                            )
+                              ? 'checkmark-outline'
+                              : 'add-outline'
+                          }`}
                           class="btn-gray-watchlist-icon"
                         />
                         <p>Watchlist</p>
@@ -314,10 +341,16 @@ export default function SearchResult(props) {
                     <div className="search-buttons">
                       <button
                         className="btn-gray-watchlist btn-watchlist"
-                        onClick={props.addWatchLater}
+                        onClick={() => handleWatchLater(detailedSearch, 'tv')}
                       >
                         <ion-icon
-                          name="add-outline"
+                          name={`${
+                            watchLater.some(
+                              (serie) => serie.id === detailedSearch.id
+                            )
+                              ? 'checkmark-outline'
+                              : 'add-outline'
+                          }`}
                           class="btn-gray-watchlist-icon"
                         />
                         <p>Watchlist</p>
@@ -374,9 +407,13 @@ export default function SearchResult(props) {
                   rate={item.vote_average.toFixed(1)}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() =>
+                    handleWatchLater(item, item.name ? 'tv' : 'movie')
+                  }
                   type={type}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}

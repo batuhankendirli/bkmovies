@@ -40,7 +40,7 @@ const Modal = forwardRef((props, ref) => {
       setOpen(false);
     }
   };
-  console.log(userInput);
+
   return (
     <AnimatePresence>
       {open && (

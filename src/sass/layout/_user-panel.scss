@@ -8,6 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: $color-text-primary;
+
   &-buttons {
     display: flex;
     flex-direction: column;
@@ -40,4 +42,114 @@
       }
     }
   }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2.8rem;
+    justify-content: space-between;
+    align-self: stretch;
+    width: 100%;
+  }
+
+  &-info {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  &-top {
+    display: flex;
+    align-self: flex-start;
+    width: 100%;
+    color: $color-text-primary;
+    align-items: center;
+    justify-content: space-between;
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      border: none;
+      color: inherit;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:hover &-icon {
+        transform: rotate(45deg);
+      }
+
+      &-icon {
+        font-size: 2.8rem;
+        transition: all 0.3s;
+      }
+    }
+    &-img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    &-name {
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+  }
+
+  &-list {
+    align-self: flex-start;
+    width: 100%;
+  }
+
+  &-logout {
+    border: none;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: rgb(150, 33, 33);
+    font-family: inherit;
+    color: inherit;
+    padding: 1.6rem 3.6rem;
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    transition: all 0.3s;
+
+    &-icon {
+      font-size: 2.4rem;
+      --ionicon-stroke-width: 50px;
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      background-color: rgb(184, 20, 20);
+    }
+    &:hover &-icon {
+      transform: translateX(3px);
+    }
+  }
+
+  &-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    & p:first-child {
+      font-size: 2.4rem;
+      font-weight: 500;
+    }
+    & p {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.panel-top {
+  margin-top: 0.8rem;
+  padding-bottom: 1.5rem;
 }

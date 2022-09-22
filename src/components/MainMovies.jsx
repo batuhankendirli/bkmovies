@@ -5,6 +5,8 @@ import MovieCard from './MovieCard';
 import ShowSlide from './ShowSlide';
 import { nanoid } from 'nanoid';
 import YouTube from 'react-youtube';
+import { Context } from '../Context';
+import { addMovie, removeMovie } from '../firebase';
 
 export default function MainMovies() {
   const [popularMovies, setPopularMovies] = React.useState([]);
@@ -17,6 +19,9 @@ export default function MainMovies() {
 
   const [trailerActive, setTrailerActive] = React.useState(false);
   const [youtubePlayer, setYoutubePlayer] = React.useState('');
+
+  const { user, watchLater } = React.useContext(Context);
+
   React.useEffect(() => {
     async function getGenreType(id) {
       const res = await fetch(
@@ -120,6 +125,19 @@ export default function MainMovies() {
     );
   }
 
+  const handleWatchLater = async (item, type) => {
+    if (user) {
+      if (watchLater.some((movie) => movie.id === item.id)) {
+        const movie = watchLater.find((movie) => movie.id === item.id);
+        await removeMovie(movie);
+      } else {
+        await addMovie(item, type);
+      }
+    } else {
+      toast.error('Hold it right there! You should log in first.');
+    }
+  };
+
   return (
     <>
       {/* YOUTUBE TRAILER */}
@@ -159,9 +177,11 @@ export default function MainMovies() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'movie')}
                   type={'movie'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -187,9 +207,11 @@ export default function MainMovies() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'movie')}
                   type={'movie'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -215,9 +237,11 @@ export default function MainMovies() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'movie')}
                   type={'movie'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -243,9 +267,11 @@ export default function MainMovies() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'movie')}
                   type={'movie'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -272,9 +298,11 @@ export default function MainMovies() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'movie')}
                   type={'movie'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -300,9 +328,11 @@ export default function MainMovies() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'movie')}
                   type={'movie'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}
@@ -328,9 +358,11 @@ export default function MainMovies() {
                   rate={item.vote_average}
                   key={nanoid()}
                   watchTrailer={() => watchTrailer(item.id)}
+                  addWatchLater={() => handleWatchLater(item, 'movie')}
                   type={'movie'}
                   id={item.id}
                   item={item}
+                  icon={watchLater.some((movie) => movie.id === item.id)}
                 />
               );
             })}

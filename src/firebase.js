@@ -119,15 +119,16 @@ export const updateUserData = async (displayName, photoURL) => {
   }
 };
 
-export const addMovie = async (data) => {
+export const addMovie = async (data, type) => {
   try {
     const watchLaterId = nanoid();
     await setDoc(doc(db, `${auth.currentUser.uid}/${watchLaterId}`), {
       ...data,
       createdAt: new Date(),
       watchLaterId: watchLaterId,
+      type: type,
     });
-    toast.success(`${data.title} added to watch later!`, {
+    toast.success(`${data.title || data.name} added to watch later!`, {
       duration: 2000,
       style: {
         width: '300px',
@@ -147,7 +148,7 @@ export const addMovie = async (data) => {
 export const removeMovie = async (data) => {
   try {
     await deleteDoc(doc(db, auth.currentUser.uid, data.watchLaterId));
-    toast.error(`${data.title} removed from your watchlist!`, {
+    toast.error(`${data.title || data.name} removed from your watchlist!`, {
       duration: 2000,
       style: {
         width: '300px',

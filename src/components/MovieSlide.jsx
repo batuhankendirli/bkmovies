@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 
 import Image from './Image';
+import { Context } from '../Context';
+import { addMovie, removeMovie } from '../firebase';
 
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -16,6 +18,8 @@ export default function SeriesSlide() {
   const [darkKnight, setDarkKnight] = React.useState({});
   const [movieIndex, setMovieIndex] = React.useState(0);
   const [trailerActive, setTrailerActive] = React.useState(false);
+  const [movieId, setMovieId] = React.useState(550);
+  const { user, watchLater } = React.useContext(Context);
 
   React.useEffect(() => {
     async function getSeries(id) {
@@ -62,6 +66,29 @@ export default function SeriesSlide() {
     setLink(trailerLink);
   }
 
+  const handleWatchLater = async (type) => {
+    if (user) {
+      if (watchLater.some((movie) => movie.id === movieId)) {
+        const movie = watchLater.find((movie) => movie.id === movieId);
+        await removeMovie(movie);
+      } else {
+        async function getMovie(movieId) {
+          const res = await fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${
+              import.meta.env.VITE_TMDB_API_KEY
+            }&language=en-US&append_to_response=videos`
+          );
+          const data = await res.json();
+
+          await addMovie(data, type);
+        }
+        getMovie(movieId);
+      }
+    } else {
+      toast.error('Hold it right there! You should log in first.');
+    }
+  };
+
   return (
     <>
       <Swiper
@@ -73,7 +100,16 @@ export default function SeriesSlide() {
         grabCursor={true}
         autoplay={{ delay: 6500, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        onSlideChange={(index) => setMovieIndex(index.realIndex)}
+        onSlideChange={(index) => {
+          setMovieIndex(index.realIndex);
+          if (index.realIndex === 0) {
+            setMovieId(550);
+          } else if (index.realIndex === 1) {
+            setMovieId(264660);
+          } else if (index.realIndex === 2) {
+            setMovieId(155);
+          }
+        }}
       >
         <SwiperSlide>
           <Image
@@ -105,8 +141,18 @@ export default function SeriesSlide() {
 
         <div className="btn-box">
           <span className="btn-gray">
-            <button className="btn-gray-watchlist">
-              <ion-icon name="add-outline" class="btn-gray-watchlist-icon" />
+            <button
+              className="btn-gray-watchlist"
+              onClick={() => handleWatchLater('movie')}
+            >
+              <ion-icon
+                name={`${
+                  watchLater.some((movie) => movie.id === movieId)
+                    ? 'checkmark-outline'
+                    : 'add-outline'
+                }`}
+                class="btn-gray-watchlist-icon"
+              />
               <p>Watchlist</p>
             </button>
           </span>
