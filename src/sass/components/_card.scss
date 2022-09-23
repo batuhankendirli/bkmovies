@@ -94,6 +94,14 @@
   width: 200px !important;
 }
 
+.button-slide {
+  width: max-content !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130px;
+}
+
 .swiper-horizontal > .swiper-scrollbar,
 .swiper-scrollbar.swiper-scrollbar-horizontal {
   bottom: 0;
@@ -101,4 +109,30 @@
 
 .swiper-scrollbar-drag {
   background: $color-text-fourth;
+}
+
+.show-rest {
+  height: 48px;
+  width: 48px;
+  border: none;
+  font-family: inherit;
+  text-decoration: none;
+  color: $color-text-primary;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: $color-text-fourth;
+  transition: all 0.2s;
+  backdrop-filter: blur(7px);
+
+  &-icon {
+    font-size: 2.8rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-text-fifth;
+  }
 }

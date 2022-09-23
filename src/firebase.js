@@ -46,10 +46,10 @@ export const register = async (email, password) => {
 
 export const emailVerification = async () => {
   try {
+    await sendEmailVerification(auth.currentUser);
     toast.success(
       `Dogrulama maili ${auth.currentUser.email} adresine gonderildi.`
     );
-    await sendEmailVerification(auth.currentUser);
   } catch (error) {
     toast.error(error.message);
   }

@@ -8,16 +8,19 @@ import { nanoid } from 'nanoid';
 import ShowSlide from './ShowSlide';
 import YouTube from 'react-youtube';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import SettingsModal from './SettingsModal';
 
 export default function UserPanel() {
   const [title, setTitle] = React.useState('');
   const modalRef = React.useRef(null);
+  const settingsRef = React.useRef(null);
   const { user, watchLater } = React.useContext(Context);
   const [topMovies, setTopMovies] = React.useState([]);
   const [topTV, setTopTV] = React.useState([]);
   const [trailerActive, setTrailerActive] = React.useState(false);
   const [youtubePlayer, setYoutubePlayer] = React.useState('');
   const [animationParent] = useAutoAnimate();
+  const [firstTen, setFirstTen] = React.useState([]);
 
   React.useEffect(() => {
     async function getTopRatedMovies() {
@@ -60,6 +63,10 @@ export default function UserPanel() {
 
   const handleLogout = () => {
     logOut();
+  };
+
+  const handleSettings = () => {
+    settingsRef.current.openSettings();
   };
 
   async function watchTrailer(id, type) {
@@ -134,9 +141,17 @@ export default function UserPanel() {
       />
     );
   });
-
+  console.log('PANEL RENDERED');
+  React.useEffect(() => {
+    if (watchLater.length > 10) {
+      setFirstTen(mappedWatchLater.slice(0, 10));
+    } else {
+      setFirstTen(mappedWatchLater);
+    }
+  }, [watchLater]);
   return (
     <>
+      <SettingsModal ref={settingsRef} />
       <Modal title={title} ref={modalRef} handleClick={handleSwitch}></Modal>
       {trailerActive && (
         <div className="yt-bg">
@@ -157,21 +172,23 @@ export default function UserPanel() {
         {user ? (
           <div className="user-panel-wrapper">
             <div className="user-panel-top">
-              <button className="user-panel-top-button">
+              <button
+                className="user-panel-top-button"
+                onClick={handleSettings}
+              >
                 <ion-icon
                   name="settings-outline"
                   class="user-panel-top-button-icon"
                 ></ion-icon>
               </button>
               <div className="user-panel-info">
-                <p className="user-panel-top-name">
-                  {user.displayName || 'Batuhan Kendirli'}
-                </p>
+                {user?.displayName && (
+                  <p className="user-panel-top-name">
+                    {user.displayName || ''}
+                  </p>
+                )}
                 <img
-                  src={
-                    'https://avatars.githubusercontent.com/u/76517857?s=400&u=4b99c354b7085da58cbec408088534983e16cd77&v=4' ||
-                    '/img/person.png'
-                  }
+                  src={user.photoURL || '/img/person.png'}
                   alt={`${user.displayName}'s profile photo.`}
                   className="user-panel-top-img"
                 />
@@ -182,9 +199,10 @@ export default function UserPanel() {
               <div className="user-panel-list-cards">
                 {watchLater.length ? (
                   <ShowSlide
-                    data={mappedWatchLater}
+                    data={firstTen}
                     spaceBetween={15}
                     panelTop={true}
+                    button={watchLater.length > 10 ? true : false}
                   />
                 ) : (
                   <div className="user-panel-empty">

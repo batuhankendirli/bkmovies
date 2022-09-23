@@ -10,6 +10,20 @@
   justify-content: center;
   color: $color-text-primary;
 
+  &-top {
+    position: relative;
+    &::after {
+      position: absolute;
+      content: '';
+      height: 1px;
+      width: 100%;
+      bottom: -15px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
   &-buttons {
     display: flex;
     flex-direction: column;
@@ -47,7 +61,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem 2.8rem;
+    padding: 4rem 2.8rem 1.4rem 2.8rem;
     justify-content: space-between;
     align-self: stretch;
     width: 100%;
@@ -110,7 +124,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    background-color: rgb(150, 33, 33);
+    background-color: $color-button-remove;
     font-family: inherit;
     color: inherit;
     padding: 1.6rem 3.6rem;
@@ -127,7 +141,7 @@
     }
 
     &:hover {
-      background-color: rgb(184, 20, 20);
+      background-color: $color-button-remove-hover;
     }
     &:hover &-icon {
       transform: translateX(3px);

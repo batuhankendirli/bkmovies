@@ -2,10 +2,12 @@ import React from 'react';
 import Footer from './Footer';
 import MainSeries from './MainSeries';
 import MainMovies from './MainMovies';
+import Watchlist from './Watchlist';
 import SearchResult from './SearchResult';
 import { nanoid } from 'nanoid';
 import { Context } from '../Context';
 import Logo from './Logo';
+import ProtectedRoute from './ProtectedRoute';
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Routes, Route, NavLink, Link } from 'react-router-dom';
@@ -15,7 +17,7 @@ export default function SectionMain() {
   const [search, setSearch] = React.useState('');
   const [searchResults, setSearchResults] = React.useState([]);
   const [showResults, setShowResults] = React.useState(false);
-  const { clickedSearch, setClickedSearch } = React.useContext(Context);
+  const { clickedSearch, setClickedSearch, user } = React.useContext(Context);
   const searchRef = React.useRef(null);
 
   const [animationParent] = useAutoAnimate();
@@ -165,6 +167,14 @@ export default function SectionMain() {
 
         <Route path="/movies" element={<MainMovies />} />
         <Route path="/tv-shows" element={<MainSeries />} />
+        <Route
+          path="/watchlist"
+          element={
+            <ProtectedRoute>
+              <Watchlist />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       <Footer />

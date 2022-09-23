@@ -1,6 +1,8 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom';
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/lazy';
@@ -18,6 +20,7 @@ export default function ShowSlide(props) {
       </SwiperSlide>
     );
   });
+
   return (
     <Swiper
       scrollbar={{
@@ -33,7 +36,21 @@ export default function ShowSlide(props) {
       grabCursor={true}
       touchEventsTarget={'container'}
     >
-      {slide}
+      {
+        <>
+          {slide},{' '}
+          {props.button == true && (
+            <SwiperSlide key={nanoid()} className="button-slide">
+              <Link to={'/watchlist'} className="show-rest">
+                <ion-icon
+                  name="chevron-forward-outline"
+                  class="show-rest-icon"
+                ></ion-icon>
+              </Link>
+            </SwiperSlide>
+          )}
+        </>
+      }
     </Swiper>
   );
 }

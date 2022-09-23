@@ -16,8 +16,11 @@ function ContextProvider({ children }) {
   const [currentLink, setCurrentLink] = useState('');
   const [user, setUser] = useState(auth.currentUser);
 
+  const [changedData, setChangedData] = React.useState({
+    displayName: '',
+    photoURL: '',
+  });
   const [watchLater, setWatchLater] = useState([]);
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -34,13 +37,16 @@ function ContextProvider({ children }) {
         });
         setWatchLater(moviesArr);
       });
-
+      setChangedData({
+        displayName: user.displayName || '',
+        photoURL: user.photoURL || '',
+      });
       return () => {
         unsubscribe();
         unsub();
       };
     }
-  }, [user]);
+  }, [user?.displayName]);
 
   return (
     <Context.Provider
@@ -53,6 +59,8 @@ function ContextProvider({ children }) {
         setUser,
         watchLater,
         setWatchLater,
+        changedData,
+        setChangedData,
       }}
     >
       {children}

@@ -1,0 +1,111 @@
+.watchlist {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+  position: relative;
+  padding: 4.8rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(33, 36, 45);
+  }
+
+  &-title {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    align-self: center;
+    letter-spacing: 5px;
+    color: $color-text-primary;
+    position: relative;
+
+    &::after {
+      content: '';
+      background-color: $color-text-primary;
+      height: 3px;
+      width: 3px;
+      border-radius: 50%;
+      position: absolute;
+      right: -15px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    &::before {
+      content: '';
+      background-color: $color-text-primary;
+      height: 3px;
+      width: 3px;
+      border-radius: 50%;
+      position: absolute;
+      left: -15px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3.2rem;
+  }
+  &-btn {
+    border: none;
+    border-radius: 1.5rem;
+    font-family: inherit;
+    padding: 1.6rem 3.6rem;
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    transition: all 0.3s;
+    align-self: center;
+    color: $color-text-primary;
+    background-color: rgba(128, 128, 128, 0.356);
+    backdrop-filter: blur(7px);
+    transition: all 0.2s;
+    &:hover {
+      background-color: $color-text-fifth;
+    }
+  }
+}
+
+.btn-remove {
+  height: 48px;
+  width: 48px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: $color-text-primary;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-text-fourth;
+  transition: all 0.4s;
+  backdrop-filter: blur(7px);
+
+  &:hover {
+    background-color: $color-button-remove;
+  }
+  &:active {
+    background-color: $color-button-remove-hover;
+  }
+  &-icon {
+    font-size: 2.4rem;
+    transition: all 0.4s;
+  }
+  &:hover &-icon {
+    transform: scale(1.05);
+  }
+  &:active &-icon {
+    transform: scale(1);
+  }
+}

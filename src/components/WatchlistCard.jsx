@@ -1,30 +1,12 @@
 import React from 'react';
-import { genres } from '../genreData';
 
-import { Routes, Route, NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Context } from '../Context';
-export default function MovieCard(props) {
+export default function WatchlistCard(props) {
   const { setClickedSearch } = React.useContext(Context);
-  const genresText = [];
-  const propsLength =
-    props.genres.length == 1
-      ? props.genres.length
-      : props.genres.includes(10759) ||
-        props.genres.includes(10765) ||
-        props.genres.includes(10768)
-      ? 1
-      : 2;
-  for (let i = 0; i < propsLength; i++) {
-    for (let j = 0; j < genres.length; j++) {
-      if (props.genres[i] === genres[j].id) {
-        genresText.push(genres[j].name);
-      }
-    }
-  }
 
   function handleClick(item) {
     setClickedSearch(item);
-
     document.documentElement.scrollTop = 0;
   }
   return (
@@ -48,18 +30,11 @@ export default function MovieCard(props) {
               >
                 Details
               </Link>
-              <p className="card-texts-type">{genresText.join(', ')}</p>
             </div>
           </div>
           <div className="card-buttons">
-            <button
-              className="btn-gray-watchlist btn-watchlist-sm"
-              onClick={props.addWatchLater}
-            >
-              <ion-icon
-                name={props.icon ? 'checkmark-outline' : 'add-outline'}
-                class="btn-gray-watchlist-icon"
-              />
+            <button className="btn-remove" onClick={props.removeMovie}>
+              <ion-icon name="trash-outline" class="btn-remove-icon" />
             </button>
             <button
               className="btn-blue-watchnow btn-watchnow-sm"
