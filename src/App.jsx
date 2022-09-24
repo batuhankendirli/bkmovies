@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from './components/Modal';
 import SectionMain from './components/SectionMain';
 import UserPanel from './components/UserPanel';
 import { Toaster } from 'react-hot-toast';
