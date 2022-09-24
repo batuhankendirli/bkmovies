@@ -158,7 +158,11 @@ export const updateUserData = async (
         })
       : toast.success('Profile updated!');
   } catch (error) {
-    toast.error(error.message);
+    if (error.code === 'auth/invalid-profile-attribute') {
+      toast.error('Photo URL is too long.');
+    } else {
+      toast.error(error.message);
+    }
   }
 };
 
