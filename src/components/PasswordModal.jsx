@@ -53,7 +53,7 @@ const PasswordModal = forwardRef((props, ref) => {
               }}
               animate={{
                 backdropFilter: 'brightness(25%) blur(10px)',
-                transition: { duration: 0.2 },
+                transition: { duration: 0.2, delay: 0.4 },
               }}
               exit={{
                 backdropFilter: 'brightness(100%) blur(0px)',
@@ -72,7 +72,7 @@ const PasswordModal = forwardRef((props, ref) => {
               animate={{
                 scale: 1,
                 opacity: 1,
-                transition: { duration: 0.2, delay: 0.2 },
+                transition: { duration: 0.2, delay: 0.6 },
               }}
               exit={{
                 scale: 0,
@@ -83,16 +83,16 @@ const PasswordModal = forwardRef((props, ref) => {
               <motion.form
                 className="modal-content-form"
                 initial={{
-                  y: 20,
+                  y: 15,
                   opacity: 0,
                 }}
                 animate={{
                   y: 0,
                   opacity: 1,
-                  transition: { duration: 0.2, delay: 0.4 },
+                  transition: { duration: 0.2, delay: 0.8 },
                 }}
                 exit={{
-                  y: 20,
+                  y: 15,
                   opacity: 0,
                   transition: { duration: 0.2 },
                 }}

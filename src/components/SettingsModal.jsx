@@ -74,6 +74,7 @@ const SettingsModal = forwardRef((props, ref) => {
   };
   const handlePasswordChange = async (password) => {
     await updateUserPassword(password);
+    setNewPassword('');
   };
 
   return (
