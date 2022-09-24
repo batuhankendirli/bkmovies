@@ -15,7 +15,7 @@ import toast from 'react-hot-toast';
 export default function SeriesSlide() {
   const [link, setLink] = React.useState('');
   const [fightClub, setFightClub] = React.useState({});
-  const [noCFOM, setNoCFOM] = React.useState({});
+  const [exMachina, setExMachina] = React.useState({});
   const [darkKnight, setDarkKnight] = React.useState({});
   const [movieIndex, setMovieIndex] = React.useState(0);
   const [trailerActive, setTrailerActive] = React.useState(false);
@@ -35,7 +35,7 @@ export default function SeriesSlide() {
         setFightClub(data);
       }
       if (id == 264660) {
-        setNoCFOM(data);
+        setExMachina(data);
       }
       if (id == 155) {
         setDarkKnight(data);
@@ -54,7 +54,7 @@ export default function SeriesSlide() {
       ).key;
     }
     if (index === 1) {
-      trailerLink = noCFOM.videos.results.find(
+      trailerLink = exMachina.videos.results.find(
         (item) => item.type == 'Trailer'
       ).key;
     }
@@ -128,10 +128,10 @@ export default function SeriesSlide() {
         <SwiperSlide>
           <Image
             img={
-              noCFOM.backdrop_path &&
-              `https://image.tmdb.org/t/p/w1280${noCFOM.backdrop_path}`
+              exMachina.backdrop_path &&
+              `https://image.tmdb.org/t/p/w1280${exMachina.backdrop_path}`
             }
-            name={noCFOM.title}
+            name={exMachina.title}
           />
         </SwiperSlide>
         <SwiperSlide>
