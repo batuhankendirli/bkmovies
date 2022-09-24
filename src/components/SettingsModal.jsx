@@ -58,6 +58,7 @@ const SettingsModal = forwardRef((props, ref) => {
   const updateUserPassword = async (newPassword) => {
     try {
       await updatePassword(auth.currentUser, newPassword);
+      setOpen(false);
       toast.success('Password updated!');
       setNewPassword('');
     } catch (error) {

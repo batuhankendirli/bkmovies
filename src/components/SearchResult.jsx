@@ -10,6 +10,7 @@ import ActorCard from './ActorCard';
 import ActorSlide from './ActorSlide';
 import { Context } from '../Context';
 import { addMovie, removeMovie } from '../firebase';
+import toast from 'react-hot-toast';
 
 export default function SearchResult(props) {
   const [trailerActive, setTrailerActive] = React.useState(false);
@@ -153,11 +154,15 @@ export default function SearchResult(props) {
 
   const handleWatchLater = async (item, type) => {
     if (user) {
-      if (watchLater.some((movie) => movie.id === item.id)) {
-        const movie = watchLater.find((movie) => movie.id === item.id);
-        await removeMovie(movie);
+      if (user.emailVerified) {
+        if (watchLater.some((movie) => movie.id === item.id)) {
+          const movie = watchLater.find((movie) => movie.id === item.id);
+          await removeMovie(movie);
+        } else {
+          await addMovie(item, type);
+        }
       } else {
-        await addMovie(item, type);
+        toast.error('You should first verify your email.');
       }
     } else {
       toast.error('Hold it right there! You should log in first.');

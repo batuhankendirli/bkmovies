@@ -10,6 +10,7 @@ import { addMovie, removeMovie } from '../firebase';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import toast from 'react-hot-toast';
 
 export default function SeriesSlide() {
   const [link, setLink] = React.useState('');
@@ -68,21 +69,25 @@ export default function SeriesSlide() {
 
   const handleWatchLater = async (type) => {
     if (user) {
-      if (watchLater.some((movie) => movie.id === movieId)) {
-        const movie = watchLater.find((movie) => movie.id === movieId);
-        await removeMovie(movie);
-      } else {
-        async function getMovie(movieId) {
-          const res = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${
-              import.meta.env.VITE_TMDB_API_KEY
-            }&language=en-US&append_to_response=videos`
-          );
-          const data = await res.json();
+      if (user.emailVerified) {
+        if (watchLater.some((movie) => movie.id === movieId)) {
+          const movie = watchLater.find((movie) => movie.id === movieId);
+          await removeMovie(movie);
+        } else {
+          async function getMovie(movieId) {
+            const res = await fetch(
+              `https://api.themoviedb.org/3/movie/${movieId}?api_key=${
+                import.meta.env.VITE_TMDB_API_KEY
+              }&language=en-US&append_to_response=videos`
+            );
+            const data = await res.json();
 
-          await addMovie(data, type);
+            await addMovie(data, type);
+          }
+          getMovie(movieId);
         }
-        getMovie(movieId);
+      } else {
+        toast.error('You should first verify your email.');
       }
     } else {
       toast.error('Hold it right there! You should log in first.');
