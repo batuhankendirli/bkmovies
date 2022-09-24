@@ -94,19 +94,6 @@ export const resetPassword = async (email) => {
   }
 };
 
-export const reauthenticate = async (password) => {
-  try {
-    const credential = EmailAuthProvider.credential(
-      auth.currentUser.email,
-      password
-    );
-    await reauthenticateWithCredential(auth.currentUser, credential);
-    toast.success('You can update your password now.');
-  } catch (error) {
-    toast.error(error.message);
-  }
-};
-
 export const updateUserData = async (displayName, photoURL) => {
   try {
     await updateProfile(auth.currentUser, {

@@ -141,7 +141,7 @@ export default function UserPanel() {
       />
     );
   });
-  console.log('PANEL RENDERED');
+
   React.useEffect(() => {
     if (watchLater.length > 10) {
       setFirstTen(mappedWatchLater.slice(0, 10));

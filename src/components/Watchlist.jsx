@@ -115,7 +115,7 @@ export default function Watchlist() {
           ) : watchLater.length > 0 ? (
             mappedWatchLater
           ) : (
-            <div className="user-panel-empty">
+            <div className="watchlist-empty">
               <p>¯\_(ツ)_/¯</p>
               <p style={{ textAlign: 'center' }}>
                 Add some movies/tv-shows to watch later.

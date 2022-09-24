@@ -252,3 +252,18 @@
   align-items: center;
   gap: 0.2rem;
 }
+
+.modal-password {
+  z-index: 9999;
+  position: fixed;
+  width: 45rem;
+  height: 22rem;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: $color-primary;
+  padding: 1.8rem;
+  border-radius: 15px;
+}

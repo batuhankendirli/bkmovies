@@ -4,7 +4,8 @@
   gap: 4.8rem;
   position: relative;
   padding: 4.8rem;
-
+  min-height: 50vh;
+  justify-content: center;
   &::after {
     content: '';
     position: absolute;
@@ -13,6 +14,15 @@
     width: 100%;
     height: 1px;
     background-color: rgb(33, 36, 45);
+  }
+
+  &-empty {
+    font-size: 3.2rem;
+    text-align: center;
+    color: $color-text-primary;
+    & p:first-child {
+      font-weight: 500;
+    }
   }
 
   &-title {

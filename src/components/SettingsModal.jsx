@@ -14,7 +14,7 @@ import { Context } from '../Context';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { updatePassword } from 'firebase/auth';
-import Modal from './Modal';
+import PasswordModal from './PasswordModal';
 
 const SettingsModal = forwardRef((props, ref) => {
   const { user, setUser, changedData, setChangedData } =
@@ -59,40 +59,85 @@ const SettingsModal = forwardRef((props, ref) => {
     try {
       await updatePassword(auth.currentUser, newPassword);
       toast.success('Password updated!');
+      setNewPassword('');
     } catch (error) {
       if (error.code === 'auth/requires-recent-login') {
-        toast('You should enter your current password.');
-        setShowPasswordReset(true);
+        toast.error(
+          'You should enter your current password to continue this action.'
+        );
+        setOpen(false);
+        modalRef.current.open();
       } else {
         toast.error(error.message);
       }
     }
   };
   const handlePasswordChange = async (password) => {
-    // await updateUserData(newPassword);
-    // setNewPassword('');
-    setOpen(false);
-    modalRef.current.open();
+    await updateUserPassword(password);
   };
 
   return (
     <>
-      <Modal ref={modalRef} />
+      <PasswordModal ref={modalRef} />
       <AnimatePresence>
         {open && (
           <>
-            <div
+            <motion.div
               className="modal-backdrop"
+              initial={{
+                backdropFilter: 'brightness(100%)',
+              }}
+              animate={{
+                backdropFilter: 'brightness(25%)',
+                transition: { duration: 0.2 },
+              }}
+              exit={{
+                backdropFilter: 'brightness(100%)',
+                transition: { duration: 0.2, delay: 0.4 },
+              }}
               onClick={() => {
                 setOpen(false);
                 setChangedData({
                   displayName: user.displayName || '',
                   photoURL: user.photoURL || '',
                 });
+                setNewPassword('');
               }}
-            ></div>
-            <div className="modal-content">
-              <form className="modal-content-form">
+            ></motion.div>
+            <motion.div
+              className="modal-content"
+              initial={{
+                scale: 0,
+                opacity: 0,
+              }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                transition: { duration: 0.2, delay: 0.2 },
+              }}
+              exit={{
+                scale: 0,
+                opacity: 0,
+                transition: { duration: 0.2, delay: 0.2 },
+              }}
+            >
+              <motion.form
+                className="modal-content-form"
+                initial={{
+                  y: 20,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                  transition: { duration: 0.2, delay: 0.4 },
+                }}
+                exit={{
+                  y: 20,
+                  opacity: 0,
+                  transition: { duration: 0.2 },
+                }}
+              >
                 <div className="modal-content-top">
                   <h1 className="modal-content-form-title">Settings</h1>
                   <span>
@@ -205,8 +250,8 @@ const SettingsModal = forwardRef((props, ref) => {
                     </button>
                   )}
                 </div>
-              </form>
-            </div>
+              </motion.form>
+            </motion.div>
           </>
         )}
       </AnimatePresence>
