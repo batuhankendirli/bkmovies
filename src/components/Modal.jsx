@@ -119,6 +119,7 @@ const Modal = forwardRef((props, ref) => {
                   placeholder="example@example.com"
                   name="email"
                   id="email"
+                  value={userInput.email}
                   onChange={(e) => handleChange(e)}
                   className="modal-content-form-input"
                 />
@@ -132,6 +133,7 @@ const Modal = forwardRef((props, ref) => {
                   placeholder="*******"
                   name="password"
                   id="password"
+                  value={userInput.password}
                   onChange={(e) => handleChange(e)}
                   className="modal-content-form-input"
                 />
@@ -161,7 +163,13 @@ const Modal = forwardRef((props, ref) => {
                 <button
                   type="button"
                   className="modal-content-form-alternative"
-                  onClick={props.handleClick}
+                  onClick={() => {
+                    props.handleClick();
+                    setUsetInput({
+                      email: '',
+                      password: '',
+                    });
+                  }}
                 >
                   {props.title === 'Log in' ? 'Sign up' : 'Log in'}
                 </button>

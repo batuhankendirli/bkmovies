@@ -208,7 +208,7 @@ export default function UserPanel() {
                   <div className="user-panel-empty">
                     <p>¯\_(ツ)_/¯</p>
                     <p style={{ textAlign: 'center' }}>
-                      Add some movies/tv-shows to watch later.
+                      Add some movies or tv shows to your watchlist.
                     </p>
                   </div>
                 )}
