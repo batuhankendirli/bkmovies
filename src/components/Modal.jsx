@@ -3,7 +3,7 @@ import { useImperativeHandle } from 'react';
 import { forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { login, register } from '../firebase';
+import { login, register, resetPassword } from '../firebase';
 
 const Modal = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
@@ -41,6 +41,10 @@ const Modal = forwardRef((props, ref) => {
     }
   };
 
+  const handleReset = async (email) => {
+    await resetPassword(email);
+  };
+
   return (
     <AnimatePresence>
       {open && (
@@ -48,14 +52,14 @@ const Modal = forwardRef((props, ref) => {
           <motion.div
             className="modal-backdrop"
             initial={{
-              backdropFilter: 'brightness(100%)',
+              backdropFilter: 'brightness(100%) blur(0px)',
             }}
             animate={{
-              backdropFilter: 'brightness(25%)',
+              backdropFilter: 'brightness(25%) blur(10px)',
               transition: { duration: 0.2 },
             }}
             exit={{
-              backdropFilter: 'brightness(100%)',
+              backdropFilter: 'brightness(100%) blur(0px)',
               transition: { duration: 0.2, delay: 0.4 },
             }}
             onClick={() => {
@@ -133,7 +137,11 @@ const Modal = forwardRef((props, ref) => {
                 />
               </div>
               {props.title == 'Log in' && (
-                <button type="button" className="modal-content-form-forgot">
+                <button
+                  type="button"
+                  className="modal-content-form-forgot"
+                  onClick={() => handleReset(userInput.email)}
+                >
                   Forgot password?
                 </button>
               )}

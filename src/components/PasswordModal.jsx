@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast';
 const PasswordModal = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
   const [password, setPassword] = React.useState('');
-  const settingsRef = React.useRef(null);
+
   useImperativeHandle(ref, () => {
     return {
       open: () => setOpen(true),
@@ -49,14 +49,14 @@ const PasswordModal = forwardRef((props, ref) => {
             <motion.div
               className="modal-backdrop"
               initial={{
-                backdropFilter: 'brightness(100%)',
+                backdropFilter: 'brightness(100%) blur(0px)',
               }}
               animate={{
-                backdropFilter: 'brightness(25%)',
+                backdropFilter: 'brightness(25%) blur(10px)',
                 transition: { duration: 0.2 },
               }}
               exit={{
-                backdropFilter: 'brightness(100%)',
+                backdropFilter: 'brightness(100%) blur(0px)',
                 transition: { duration: 0.2, delay: 0.4 },
               }}
               onClick={() => {
