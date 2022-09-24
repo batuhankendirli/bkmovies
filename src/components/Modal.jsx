@@ -147,13 +147,26 @@ const Modal = forwardRef((props, ref) => {
                   Forgot password?
                 </button>
               )}
-              <button
-                type="submit"
-                className="modal-content-form-button"
-                onClick={(e) => handleUserAction(e)}
-              >
-                {props.title}
-              </button>
+              {(userInput.email.length === 0 ||
+                userInput.password.length === 0) && (
+                <button
+                  disabled
+                  type="submit"
+                  className="modal-content-form-button"
+                  onClick={(e) => handleUserAction(e)}
+                >
+                  {props.title}
+                </button>
+              )}
+              {userInput.email.length > 0 && userInput.password.length > 0 && (
+                <button
+                  type="submit"
+                  className="modal-content-form-button"
+                  onClick={(e) => handleUserAction(e)}
+                >
+                  {props.title}
+                </button>
+              )}
 
               <div className="alternative-wrapper">
                 <p className="modal-content-form-alternative-text">

@@ -12,7 +12,7 @@ import {
 } from '../firebase';
 import { Context } from '../Context';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { updatePassword } from 'firebase/auth';
 import PasswordModal from './PasswordModal';
 
@@ -39,22 +39,38 @@ const SettingsModal = forwardRef((props, ref) => {
       };
     });
   };
+  const isValidUrl = (url) => {
+    var urlPattern = new RegExp('(^http[s]?:/{2})|(^www)|(^/{1,2})');
+    return !!urlPattern.test(url);
+  };
+
   const handleSave = async () => {
     if (user.emailVerified) {
-      await updateUserData(changedData.displayName, changedData.photoURL);
-      setUser(user);
-      setChangedData({
-        displayName: user.displayName || '',
-        photoURL: user.photoURL || '',
-      });
+      if (isValidUrl(changedData.photoURL) || changedData.photoURL === '') {
+        await updateUserData(changedData.displayName, changedData.photoURL);
+        setUser(user);
+        setChangedData({
+          displayName: user.displayName || '',
+          photoURL: user.photoURL || '',
+        });
+      } else {
+        toast.error('Please enter a valid photo url.', {
+          autoClose: 3500,
+          toastId: 'image',
+        });
+      }
     } else {
-      toast.error('You should first confirm your email address.');
+      toast.error('Please verify your email to continue.', {
+        autoClose: 5000,
+        toastId: 'save',
+      });
     }
   };
 
   const handleVerify = async () => {
     await emailVerification();
   };
+
   const updateUserPassword = async (newPassword) => {
     try {
       await updatePassword(auth.currentUser, newPassword);
@@ -64,18 +80,39 @@ const SettingsModal = forwardRef((props, ref) => {
     } catch (error) {
       if (error.code === 'auth/requires-recent-login') {
         toast.error(
-          'You should enter your current password to continue this action.'
+          'Please enter your current password to continue this action.',
+          {
+            autoClose: 5000,
+          }
         );
         setOpen(false);
         modalRef.current.open();
+      } else if (error.code === 'auth/weak-password') {
+        toast.error('The password must be 6 characters long or more.', {
+          autoClose: 7500,
+          toastId: 'weak-password',
+        });
       } else {
         toast.error(error.message);
       }
     }
   };
+
   const handlePasswordChange = async (password) => {
     await updateUserPassword(password);
     setNewPassword('');
+  };
+
+  const handleImgError = (e) => {
+    setChangedData((prevData) => {
+      return {
+        ...prevData,
+        photoURL: '',
+      };
+    });
+    e.target.src = '/img/person.png';
+
+    updateUserData(changedData.displayName, '', true);
   };
 
   return (
@@ -155,6 +192,7 @@ const SettingsModal = forwardRef((props, ref) => {
                 <div className="modal-content-wrapper">
                   <img
                     src={user.photoURL || '/img/person.png'}
+                    onError={(e) => handleImgError(e)}
                     alt={`${user.displayName || user.email}'s profile picture.`}
                     className="modal-content-form-image"
                   />
@@ -172,6 +210,7 @@ const SettingsModal = forwardRef((props, ref) => {
                         value={changedData.displayName}
                         name="displayName"
                         id="name"
+                        maxLength={16}
                         onChange={handleChange}
                         className="modal-content-form-input"
                       />
@@ -184,7 +223,7 @@ const SettingsModal = forwardRef((props, ref) => {
                         Photo URL
                       </label>
                       <input
-                        type="text"
+                        type="url"
                         placeholder="https://pbs.twimg.com/profile_images/446356636710363136/OYIaJ1KK_400x400.png"
                         value={changedData.photoURL}
                         name="photoURL"

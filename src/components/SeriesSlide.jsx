@@ -10,7 +10,7 @@ import { addMovie, removeMovie } from '../firebase';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 export default function SeriesSlide() {
   const [link, setLink] = React.useState('');
@@ -88,10 +88,16 @@ export default function SeriesSlide() {
           getSerie(serieId);
         }
       } else {
-        toast.error('You should first verify your email.');
+        toast.error('Please verify your email to continue.', {
+          autoClose: 5000,
+          toastId: 'verify',
+        });
       }
     } else {
-      toast.error('Hold it right there! You should log in first.');
+      toast.error('Hold it right there! You should log in first.', {
+        autoClose: 5000,
+        toastId: 'login',
+      });
     }
   };
 

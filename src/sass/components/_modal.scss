@@ -163,6 +163,13 @@
       background-color: $color-button-hover;
       transform: scale(1.03);
     }
+
+    &:disabled {
+      transform: scale(1);
+      color: rgba($color: $color-text-primary, $alpha: 0.2);
+      background-color: rgba($color: $color-button, $alpha: 0.2);
+      cursor: not-allowed;
+    }
   }
 
   &-forgot {

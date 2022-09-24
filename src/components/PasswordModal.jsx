@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 import { auth } from '../firebase';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 const PasswordModal = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
@@ -27,7 +27,14 @@ const PasswordModal = forwardRef((props, ref) => {
       toast.success('You can update your password now.');
       setOpen(false);
     } catch (error) {
-      toast.error(error.message);
+      if (error.code === 'auth/wrong-password') {
+        toast.error('Incorrect password.', {
+          autoClose: 5000,
+          toastId: 'incorrect',
+        });
+      } else {
+        toast.error(error.message);
+      }
     }
   };
 

@@ -9,7 +9,7 @@ import ShowSlide from './ShowSlide';
 import YouTube from 'react-youtube';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import SettingsModal from './SettingsModal';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 export default function UserPanel() {
   const [title, setTitle] = React.useState('');
@@ -118,10 +118,16 @@ export default function UserPanel() {
           await addMovie(item, type);
         }
       } else {
-        toast.error('You should first verify your email.');
+        toast.error('Please verify your email to continue.', {
+          autoClose: 5000,
+          toastId: 'verify',
+        });
       }
     } else {
-      toast.error('Hold it right there! You should log in first.');
+      toast.error('Hold it right there! You should log in first.', {
+        autoClose: 5000,
+        toastId: 'login',
+      });
     }
   };
 
@@ -154,6 +160,11 @@ export default function UserPanel() {
       setFirstTen(mappedWatchLater);
     }
   }, [watchLater]);
+
+  const handleImgError = (e) => {
+    e.target.src = '/img/person.png';
+  };
+
   return (
     <>
       <SettingsModal ref={settingsRef} />
@@ -196,6 +207,7 @@ export default function UserPanel() {
                   src={user.photoURL || '/img/person.png'}
                   alt={`${user.displayName}'s profile photo.`}
                   className="user-panel-top-img"
+                  onError={(e) => handleImgError(e)}
                 />
               </div>
             </div>

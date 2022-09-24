@@ -10,7 +10,7 @@ import ActorCard from './ActorCard';
 import ActorSlide from './ActorSlide';
 import { Context } from '../Context';
 import { addMovie, removeMovie } from '../firebase';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 export default function SearchResult(props) {
   const [trailerActive, setTrailerActive] = React.useState(false);
@@ -162,10 +162,16 @@ export default function SearchResult(props) {
           await addMovie(item, type);
         }
       } else {
-        toast.error('You should first verify your email.');
+        toast.error('Please verify your email to continue.', {
+          autoClose: 5000,
+          toastId: 'verify',
+        });
       }
     } else {
-      toast.error('Hold it right there! You should log in first.');
+      toast.error('Hold it right there! You should log in first.', {
+        autoClose: 5000,
+        toastId: 'login',
+      });
     }
   };
 

@@ -8,11 +8,9 @@ import {
   sendEmailVerification,
   updateProfile,
   sendPasswordResetEmail,
-  reauthenticateWithCredential,
-  EmailAuthProvider,
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, deleteDoc } from 'firebase/firestore';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
 
 const firebaseConfig = {
@@ -37,10 +35,26 @@ export const register = async (email, password) => {
       email,
       password
     );
-    toast.success('Hurrayy! Welcome to BKMovies!');
+    toast.success('Hurrayy! Welcome to BKMovies!', { autoClose: 7500 });
     return user;
   } catch (error) {
-    toast.error(error.message);
+    if (error.code === 'auth/invalid-email') {
+      toast.error('The provided value for the email is invalid.', {
+        toastId: 'invalid-email',
+      });
+    } else if (error.code === 'auth/weak-password') {
+      toast.error('The password must be 6 characters long or more.', {
+        autoClose: 7500,
+        toastId: 'weak-password',
+      });
+    } else if (error.code === 'auth/email-already-in-use') {
+      toast.error('The email address is already in use by another account.', {
+        autoClose: 7500,
+        toastId: 'already-in-use',
+      });
+    } else {
+      toast.error(error.message);
+    }
   }
 };
 
@@ -48,7 +62,10 @@ export const emailVerification = async () => {
   try {
     await sendEmailVerification(auth.currentUser);
     toast.success(
-      `Dogrulama maili ${auth.currentUser.email} adresine gonderildi.`
+      `A verification link has been sent to ${auth.currentUser.email}.`,
+      {
+        autoClose: 10000,
+      }
     );
   } catch (error) {
     toast.error(error.message);
@@ -65,12 +82,26 @@ export const login = async (email, password) => {
           : ` ${auth.currentUser.displayName}`
       }!`,
       {
-        duration: 3000,
+        autoClose: 5000,
       }
     );
     return user;
   } catch (error) {
-    toast.error(error.message);
+    if (error.code === 'auth/invalid-email') {
+      toast.error('The provided value for the email is invalid.', {
+        toastId: 'invalid-email',
+      });
+    } else if (
+      error.code === 'auth/wrong-password' ||
+      error.code === 'auth/user-not-found'
+    ) {
+      toast.error('Incorrect email or password.', {
+        autoClose: 5000,
+        toastId: 'incorrect',
+      });
+    } else {
+      toast.error(error.message);
+    }
   }
 };
 
@@ -86,21 +117,46 @@ export const logOut = async () => {
 export const resetPassword = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
-    toast.success(`Reset link sent to ${email}.`, {
-      duration: 3000,
+    toast.success(`A password reset link has been sent to ${email}.`, {
+      autoClose: 10000,
     });
   } catch (error) {
-    toast.error(error.message);
+    if (
+      error.code === 'auth/missing-email' ||
+      error.code === 'auth/invalid-email'
+    ) {
+      toast.error('The provided value for the email is invalid.', {
+        toastId: 'invalid-email',
+      });
+    } else if (error.code === 'auth/user-not-found') {
+      toast.error(
+        'There is no user record corresponding to this email. The user may have been deleted.',
+        {
+          autoClose: 7500,
+          toastId: 'not-found',
+        }
+      );
+    } else {
+      toast.error(error.message);
+    }
   }
 };
 
-export const updateUserData = async (displayName, photoURL) => {
+export const updateUserData = async (
+  displayName,
+  photoURL = '',
+  notFound = false
+) => {
   try {
     await updateProfile(auth.currentUser, {
       displayName: displayName,
       photoURL: photoURL,
     });
-    toast.success('Profile updated!');
+    notFound
+      ? toast.error('There was no photo found.', {
+          autoClose: 7500,
+        })
+      : toast.success('Profile updated!');
   } catch (error) {
     toast.error(error.message);
   }
@@ -115,18 +171,7 @@ export const addMovie = async (data, type) => {
       watchLaterId: watchLaterId,
       type: type,
     });
-    toast.success(`${data.title || data.name} added to watch later!`, {
-      duration: 2000,
-      style: {
-        width: '300px',
-      },
-
-      ariaProps: {
-        style: {
-          justifyContent: 'start',
-        },
-      },
-    });
+    toast.success(`Added to watchlist.`);
   } catch (error) {
     toast.error(error.message);
   }
@@ -135,18 +180,7 @@ export const addMovie = async (data, type) => {
 export const removeMovie = async (data) => {
   try {
     await deleteDoc(doc(db, auth.currentUser.uid, data.watchLaterId));
-    toast.error(`${data.title || data.name} removed from your watchlist!`, {
-      duration: 2000,
-      style: {
-        width: '300px',
-      },
-
-      ariaProps: {
-        style: {
-          justifyContent: 'start',
-        },
-      },
-    });
+    toast.error(`Removed from watchlist.`);
   } catch (error) {
     toast.error(error.message);
   }

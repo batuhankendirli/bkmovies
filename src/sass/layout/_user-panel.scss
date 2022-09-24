@@ -124,6 +124,10 @@
     &-name {
       font-size: 1.6rem;
       font-weight: 400;
+      width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: end;
     }
   }
 

@@ -7,8 +7,7 @@ import { nanoid } from 'nanoid';
 import YouTube from 'react-youtube';
 import { Context } from '../Context';
 import { addMovie, removeMovie } from '../firebase';
-import toast from 'react-hot-toast';
-
+import { toast } from 'react-toastify';
 export default function MainSeries() {
   const [popularShows, setPopularShows] = React.useState([]);
   const [popularDrama, setPopularDrama] = React.useState([]);
@@ -123,19 +122,24 @@ export default function MainSeries() {
 
   const handleWatchLater = async (item, type) => {
     if (user) {
-      if(user.emailVerified){
+      if (user.emailVerified) {
         if (watchLater.some((movie) => movie.id === item.id)) {
           const movie = watchLater.find((movie) => movie.id === item.id);
           await removeMovie(movie);
         } else {
           await addMovie(item, type);
         }
-      } else{
-        toast.error('You should first verify your email.');
+      } else {
+        toast.error('Please verify your email to continue.', {
+          autoClose: 5000,
+          toastId: 'verify',
+        });
       }
-      
     } else {
-      toast.error('Hold it right there! You should log in first.');
+      toast.error('Hold it right there! You should log in first.', {
+        autoClose: 5000,
+        toastId: 'login',
+      });
     }
   };
 
