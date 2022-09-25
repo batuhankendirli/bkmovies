@@ -32,6 +32,14 @@ const PasswordModal = forwardRef((props, ref) => {
           autoClose: 5000,
           toastId: 'incorrect',
         });
+      } else if (error.code === 'auth/too-many-requests') {
+        toast.error(
+          'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.',
+          {
+            autoClose: 10000,
+            toastId: 'disabled',
+          }
+        );
       } else {
         toast.error(error.message);
       }
@@ -128,13 +136,25 @@ const PasswordModal = forwardRef((props, ref) => {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="modal-content-form-button"
-                  onClick={(e) => handleSubmit(e, password)}
-                >
-                  Log in
-                </button>
+                {password.length === 0 && (
+                  <button
+                    disabled
+                    type="submit"
+                    className="modal-content-form-button"
+                    onClick={(e) => handleSubmit(e, password)}
+                  >
+                    Log in
+                  </button>
+                )}
+                {password.length > 0 && (
+                  <button
+                    type="submit"
+                    className="modal-content-form-button"
+                    onClick={(e) => handleSubmit(e, password)}
+                  >
+                    Log in
+                  </button>
+                )}
               </motion.form>
             </motion.div>
           </>
