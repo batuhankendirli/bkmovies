@@ -62,9 +62,9 @@ export default function UserPanel() {
     title === 'Log in' ? setTitle('Sign up') : setTitle('Log in');
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setWatchLater([]);
-    logOut();
+    await logOut();
   };
 
   const handleSettings = () => {
