@@ -15,7 +15,7 @@ export default function UserPanel() {
   const [title, setTitle] = React.useState('');
   const modalRef = React.useRef(null);
   const settingsRef = React.useRef(null);
-  const { user, watchLater } = React.useContext(Context);
+  const { user, watchLater, setWatchLater } = React.useContext(Context);
   const [topMovies, setTopMovies] = React.useState([]);
   const [topTV, setTopTV] = React.useState([]);
   const [trailerActive, setTrailerActive] = React.useState(false);
@@ -63,6 +63,7 @@ export default function UserPanel() {
   };
 
   const handleLogout = () => {
+    setWatchLater([]);
     logOut();
   };
 
