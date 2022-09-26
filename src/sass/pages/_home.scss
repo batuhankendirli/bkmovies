@@ -3,7 +3,7 @@
   width: 100%;
   position: relative;
 
-  .home-wrapper {
+  &-wrapper {
     position: absolute;
     padding: 3.2rem;
     top: 0;
@@ -29,7 +29,6 @@
       &-header {
         color: $color-text-primary;
         font-size: 4.4rem;
-        z-index: 200;
         font-weight: 900;
       }
       &-paragraph {

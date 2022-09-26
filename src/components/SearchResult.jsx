@@ -29,6 +29,8 @@ export default function SearchResult(props) {
 
   const pathMovie = window.location.pathname.includes('/movie/');
   const pathTV = window.location.pathname.includes('/tv/');
+  const [noTrailer, setNoTrailer] = React.useState(false);
+  const noTrailerRef = React.useRef(null);
 
   function LoadingAnimation() {
     return (
@@ -49,36 +51,47 @@ export default function SearchResult(props) {
       }&language=en-US`
     );
     const data = await res.json();
-    const videoObj =
-      data.results.find(
-        (item) => item.name == 'Official Trailer' || item.type == 'Trailer'
-      ) ||
-      data.results[0] ||
-      '';
 
-    setTrailerActive(true);
-    setYoutubePlayer(() => {
-      return (
-        <YouTube
-          videoId={videoObj.key}
-          className={'youtube'}
-          opts={{
-            height: '563',
-            width: '1000',
-            playerVars: {
-              autoplay: 1,
-              controls: 1,
-              cc_load_policy: 0,
-              fs: 1,
-              iv_load_policy: 3,
-              modestbranding: 1,
-              rel: 0,
-              showinfo: 0,
-            },
-          }}
-        />
-      );
-    });
+    const filteredYoutube = data.results.filter(
+      (item) => item.site === 'YouTube'
+    );
+
+    const videoObject =
+      filteredYoutube.length > 0
+        ? filteredYoutube.find(
+            (item) => item.name == 'Official Trailer' || item.type == 'Trailer'
+          ) ||
+          filteredYoutube[0] ||
+          ''
+        : '';
+
+    if (videoObject) {
+      setTrailerActive(true);
+      setYoutubePlayer(() => {
+        return (
+          <YouTube
+            videoId={videoObject.key}
+            className={'youtube'}
+            opts={{
+              height: '563',
+              width: '1000',
+              playerVars: {
+                autoplay: 1,
+                controls: 1,
+                cc_load_policy: 0,
+                fs: 1,
+                iv_load_policy: 3,
+                modestbranding: 1,
+                rel: 0,
+                showinfo: 0,
+              },
+            }}
+          />
+        );
+      });
+    } else {
+      setNoTrailer(true);
+    }
   }
 
   React.useEffect(() => {
@@ -152,6 +165,7 @@ export default function SearchResult(props) {
     }
     getResult();
   }, [props.item, id]);
+
   const handleWatchLater = async (item, type) => {
     if (user) {
       if (user.emailVerified) {
@@ -175,8 +189,34 @@ export default function SearchResult(props) {
     }
   };
 
+  React.useEffect(() => {
+    const closePopup = (e) => {
+      if (e.composedPath().includes(noTrailerRef.current)) {
+        setNoTrailer(false);
+      }
+    };
+
+    document.body.addEventListener('click', closePopup);
+    return () => document.body.removeEventListener('click', closePopup);
+  }, []);
+
   return (
     <>
+      {noTrailer && (
+        <>
+          <div className="modal-backdrop" ref={noTrailerRef}></div>
+          <div className="trailer-content">
+            <h1 className="trailer-content-text">No Trailer Found</h1>
+            <ion-icon
+              name="close-outline"
+              class="trailer-content-icon-close"
+              onClick={() => {
+                setNoTrailer(false);
+              }}
+            ></ion-icon>
+          </div>
+        </>
+      )}
       {trailerActive && (
         <div className="yt-bg">
           <div className="youtube-wrapper">

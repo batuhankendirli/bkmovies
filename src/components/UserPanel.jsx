@@ -22,6 +22,8 @@ export default function UserPanel() {
   const [youtubePlayer, setYoutubePlayer] = React.useState('');
   const [animationParent] = useAutoAnimate();
   const [firstTen, setFirstTen] = React.useState([]);
+  const [noTrailer, setNoTrailer] = React.useState(false);
+  const noTrailerRef = React.useRef(null);
 
   React.useEffect(() => {
     async function getTopRatedMovies() {
@@ -78,36 +80,46 @@ export default function UserPanel() {
       }&language=en-US`
     );
     const data = await res.json();
-    const videoObj =
-      data.results.find(
-        (item) => item.name == 'Official Trailer' || item.type == 'Trailer'
-      ) ||
-      data.results[0] ||
-      '';
+    const filteredYoutube = data.results.filter(
+      (item) => item.site === 'YouTube'
+    );
 
-    setTrailerActive(true);
-    setYoutubePlayer(() => {
-      return (
-        <YouTube
-          videoId={videoObj.key}
-          className={'youtube'}
-          opts={{
-            height: '563',
-            width: '1000',
-            playerVars: {
-              autoplay: 1,
-              controls: 1,
-              cc_load_policy: 0,
-              fs: 1,
-              iv_load_policy: 3,
-              modestbranding: 1,
-              rel: 0,
-              showinfo: 0,
-            },
-          }}
-        />
-      );
-    });
+    const videoObject =
+      filteredYoutube.length > 0
+        ? filteredYoutube.find(
+            (item) => item.name == 'Official Trailer' || item.type == 'Trailer'
+          ) ||
+          filteredYoutube[0] ||
+          ''
+        : '';
+
+    if (videoObject) {
+      setTrailerActive(true);
+      setYoutubePlayer(() => {
+        return (
+          <YouTube
+            videoId={videoObject.key}
+            className={'youtube'}
+            opts={{
+              height: '563',
+              width: '1000',
+              playerVars: {
+                autoplay: 1,
+                controls: 1,
+                cc_load_policy: 0,
+                fs: 1,
+                iv_load_policy: 3,
+                modestbranding: 1,
+                rel: 0,
+                showinfo: 0,
+              },
+            }}
+          />
+        );
+      });
+    } else {
+      setNoTrailer(true);
+    }
   }
   const handleWatchLater = async (item, type) => {
     if (user) {
@@ -166,8 +178,34 @@ export default function UserPanel() {
     e.target.src = '/img/person.png';
   };
 
+  React.useEffect(() => {
+    const closePopup = (e) => {
+      if (e.composedPath().includes(noTrailerRef.current)) {
+        setNoTrailer(false);
+      }
+    };
+
+    document.body.addEventListener('click', closePopup);
+    return () => document.body.removeEventListener('click', closePopup);
+  }, []);
+
   return (
     <>
+      {noTrailer && (
+        <>
+          <div className="modal-backdrop" ref={noTrailerRef}></div>
+          <div className="trailer-content">
+            <h1 className="trailer-content-text">No Trailer Found</h1>
+            <ion-icon
+              name="close-outline"
+              class="trailer-content-icon-close"
+              onClick={() => {
+                setNoTrailer(false);
+              }}
+            ></ion-icon>
+          </div>
+        </>
+      )}
       <SettingsModal ref={settingsRef} />
       <Modal title={title} ref={modalRef} handleClick={handleSwitch}></Modal>
       {trailerActive && (

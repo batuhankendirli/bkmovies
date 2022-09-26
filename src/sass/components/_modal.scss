@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   z-index: 9988;
+  backdrop-filter: brightness(25%) blur(10px);
 }
 
 .modal-content {
@@ -272,4 +273,41 @@
   background-color: $color-primary;
   padding: 1.8rem;
   border-radius: 15px;
+}
+
+.trailer-content {
+  z-index: 9999;
+  position: fixed;
+  width: 45rem;
+  height: 8rem;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: $color-primary;
+  padding: 2.4rem;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-text {
+    font-size: 2.4rem;
+    color: $color-text-primary;
+  }
+
+  &-icon-close {
+    font-size: 3.2rem;
+    color: rgb(158, 158, 158);
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    transition: all 0.3s;
+
+    &:hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
 }
