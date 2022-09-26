@@ -278,7 +278,7 @@
 .trailer-content {
   z-index: 9999;
   position: fixed;
-  width: 45rem;
+  width: 35rem;
   height: 8rem;
   margin: auto;
   top: 0;
@@ -293,12 +293,13 @@
   justify-content: center;
 
   &-text {
-    font-size: 2.4rem;
+    font-size: 2rem;
+    font-weight: 300;
     color: $color-text-primary;
   }
 
   &-icon-close {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     color: rgb(158, 158, 158);
     position: absolute;
     right: 1rem;
