@@ -6,6 +6,11 @@
   box-sizing: border-box;
   cursor: grab;
 
+  @include respond(tab-land) {
+    width: 160px;
+    height: 110px;
+  }
+
   &-wrapper {
     padding: 0.6rem;
     position: absolute;
@@ -90,9 +95,19 @@
     height: 30px;
     border-radius: 10px;
     font-size: 1.4rem;
+
+    @include respond(tab-land) {
+      height: 24px;
+      font-size: 1.2rem;
+    }
+
     &-icon {
       font-size: 2rem;
       --ionicon-stroke-width: 50px;
+
+      @include respond(tab-land) {
+        font-size: 1.6rem;
+      }
     }
   }
 }

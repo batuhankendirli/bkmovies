@@ -258,9 +258,9 @@ export default function UserPanel() {
                 {watchLater.length ? (
                   <ShowSlide
                     data={firstTen}
-                    spaceBetween={15}
                     panelTop={true}
                     button={watchLater.length > 10 ? true : false}
+                    spaceBetween={true}
                   />
                 ) : (
                   <div className="user-panel-empty">

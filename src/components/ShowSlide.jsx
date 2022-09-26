@@ -15,7 +15,10 @@ import { Lazy, FreeMode, Mousewheel, Scrollbar } from 'swiper';
 export default function ShowSlide(props) {
   const slide = props.data.map((item) => {
     return (
-      <SwiperSlide key={nanoid()} className="movie-slide">
+      <SwiperSlide
+        key={nanoid()}
+        className={`${props.spaceBetween && 'panel-slide'} movie-slide`}
+      >
         {item}
       </SwiperSlide>
     );
@@ -32,7 +35,6 @@ export default function ShowSlide(props) {
       slidesPerView={'auto'}
       freeMode={true}
       className={`${props.panelTop && 'panel-top'} series-wrapper`}
-      spaceBetween={props.spaceBetween || 30}
       grabCursor={true}
       touchEventsTarget={'container'}
     >

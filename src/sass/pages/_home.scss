@@ -3,6 +3,10 @@
   width: 100%;
   position: relative;
 
+  @include respond(tab-land) {
+    height: 400px;
+  }
+
   &-wrapper {
     position: absolute;
     padding: 3.2rem;
@@ -21,11 +25,22 @@
     );
     border-radius: 13px;
 
+    @include respond(tab-land) {
+      height: 400px;
+      padding: 1.6rem;
+    }
+
     &-texts {
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
       width: 70%;
+
+      @include respond(tab-land) {
+        width: 100%;
+      }
+
       &-header {
         color: $color-text-primary;
         font-size: 4.4rem;
@@ -45,5 +60,9 @@
     width: 100%;
     border-radius: 15px;
     object-fit: cover;
+
+    @include respond(tab-land) {
+      height: 400px;
+    }
   }
 }

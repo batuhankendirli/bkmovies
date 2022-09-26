@@ -79,6 +79,12 @@
     background-color: rgba(128, 128, 128, 0.356);
     backdrop-filter: blur(7px);
     transition: all 0.2s;
+
+    @include respond(tab-land) {
+      padding: 1.4rem 3.2rem;
+      border-radius: 10px;
+    }
+
     &:hover {
       background-color: $color-text-fifth;
     }
@@ -102,6 +108,11 @@
   transition: all 0.4s;
   backdrop-filter: blur(7px);
 
+  @include respond(tab-land) {
+    height: 4.4rem;
+    width: 4.4rem;
+  }
+
   &:hover {
     background-color: $color-button-remove;
   }
@@ -111,6 +122,10 @@
   &-icon {
     font-size: 2.4rem;
     transition: all 0.4s;
+
+    @include respond(tab-land) {
+      font-size: 2.2rem;
+    }
   }
   &:hover &-icon {
     transform: scale(1.05);

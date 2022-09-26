@@ -29,7 +29,6 @@ export default function ActorSlide(props) {
       slidesPerView={'auto'}
       freeMode={true}
       className="series-wrapper"
-      spaceBetween={30}
       grabCursor={true}
       touchEventsTarget={'container'}
     >

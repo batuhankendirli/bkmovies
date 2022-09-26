@@ -17,6 +17,11 @@
     transition: all 0.2s;
     backdrop-filter: blur(7px);
 
+    @include respond(tab-land) {
+      padding: 1rem 1.6rem;
+      height: 44px;
+    }
+
     &:hover,
     &:active {
       background-color: $color-text-fifth;
@@ -24,6 +29,10 @@
     &-icon {
       font-size: 2.8rem;
       --ionicon-stroke-width: 60px;
+
+      @include respond(tab-land) {
+        font-size: 2.4rem;
+      }
     }
   }
 }
@@ -42,6 +51,12 @@
     border: none;
     font-family: inherit;
     transition: all 0.2s;
+
+    @include respond(tab-land) {
+      padding: 1rem 3.6rem;
+      height: 44px;
+    }
+
     &:hover,
     &:active {
       background-color: $color-button-hover;
@@ -69,6 +84,11 @@
   justify-content: center;
   height: 4.8rem;
   padding: 1.2rem 3.6rem;
+
+  @include respond(tab-land) {
+    padding: 1rem 2.8rem;
+    height: 4.4rem;
+  }
 }
 .btn-watchlist-sm {
   height: 4.8rem;
@@ -77,4 +97,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @include respond(tab-land) {
+    height: 4.4rem;
+    width: 4.4rem;
+  }
 }

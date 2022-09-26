@@ -11,6 +11,15 @@
   justify-content: center;
   color: $color-text-primary;
   overflow-y: scroll;
+
+  & h1 {
+    font-size: 1.8rem;
+  }
+
+  @include respond(tab-land) {
+    width: 20rem;
+  }
+
   &-buttons {
     display: flex;
     flex-direction: column;
@@ -25,6 +34,11 @@
       font-size: 1.8rem;
       font-weight: 700;
       letter-spacing: 0.6px;
+
+      @include respond(tab-land) {
+        padding: 1.4rem 2.8rem;
+        border-radius: 10px;
+      }
     }
     &-signin {
       color: $color-text-primary;
@@ -55,6 +69,10 @@
     gap: 2rem;
     min-height: 100%;
     height: min-content;
+
+    @include respond(tab-land) {
+      padding: 4rem 1.6rem 1rem 1.6rem;
+    }
   }
 
   &-info {
@@ -89,7 +107,6 @@
       background-color: transparent;
       border: none;
       color: inherit;
-      background-color: transparent;
       border-radius: 50%;
       padding: 0.8rem;
       transform: translateX(-0.8rem);
@@ -113,6 +130,10 @@
       &-icon {
         font-size: 2.8rem;
         transition: all 0.3s;
+
+        @include respond(tab-land) {
+          font-size: 2.4rem;
+        }
       }
     }
     &-img {
@@ -120,14 +141,27 @@
       height: 48px;
       object-fit: cover;
       border-radius: 15px;
+
+      @include respond(tab-land) {
+        width: 40px;
+        height: 40px;
+      }
     }
     &-name {
       font-size: 1.6rem;
       font-weight: 400;
       width: 140px;
-      overflow: hidden;
-      text-overflow: ellipsis;
       text-align: end;
+      overflow: hidden;
+
+      @include respond(tab-land) {
+        font-size: 1.2rem;
+        width: 65px;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+      }
     }
   }
 
@@ -152,6 +186,12 @@
     font-weight: 700;
     letter-spacing: 0.6px;
     transition: all 0.3s;
+
+    @include respond(tab-land) {
+      gap: 0.6rem;
+      padding: 1.4rem 2.8rem;
+      border-radius: 10px;
+    }
 
     &-icon {
       font-size: 2.4rem;

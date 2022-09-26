@@ -3,3 +3,36 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+// MEDIA QUERY MANAGER
+@mixin respond($breakpoint) {
+  // will handle later
+  // @if $breakpoint == phone-mini {
+  //   @media only screen and (max-width: 28.125em) {
+  //     @content;
+  //   }
+  // }
+  // @if $breakpoint == phone {
+  //   @media only screen and (max-width: 46.875em) {
+  //     @content;
+  //   }
+  // }
+
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}

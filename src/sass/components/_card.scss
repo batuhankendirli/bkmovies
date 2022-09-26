@@ -5,6 +5,12 @@
   flex: 0 0 auto;
   box-sizing: border-box;
   cursor: grab;
+
+  @include respond(tab-land) {
+    width: 160px;
+    height: 230px;
+  }
+
   &-wrapper {
     padding: 1rem;
     position: absolute;
@@ -21,6 +27,10 @@
       rgba(22, 24, 30, 0.4)
     );
     border-radius: 20px;
+
+    @include respond(tab-land) {
+      padding: 0.8rem;
+    }
   }
   &-img {
     width: 100%;
@@ -85,6 +95,10 @@
     align-items: center;
     justify-content: space-between;
     justify-self: end;
+
+    @include respond(tab-land) {
+      margin-top: 0.3rem;
+    }
   }
 }
 
@@ -93,10 +107,36 @@
   justify-content: space-between;
   margin-top: 2rem;
   padding-bottom: 1.5rem;
+
+  @include respond(tab-land) {
+    margin-top: 1.2rem;
+  }
 }
 
 .movie-slide {
   width: 200px !important;
+
+  @include respond(tab-land) {
+    width: 160px !important;
+  }
+
+  &:not(:last-child) {
+    margin-right: 30px;
+
+    @include respond(tab-land) {
+      margin-right: 20px;
+    }
+  }
+}
+
+.panel-slide {
+  &:not(:last-child) {
+    margin-right: 20px;
+
+    @include respond(tab-land) {
+      margin-right: 10px;
+    }
+  }
 }
 
 .button-slide {
@@ -105,6 +145,10 @@
   align-items: center;
   justify-content: center;
   height: 130px;
+
+  @include respond(tab-land) {
+    height: 110px;
+  }
 }
 
 .swiper-horizontal > .swiper-scrollbar,
@@ -132,8 +176,18 @@
   transition: all 0.2s;
   backdrop-filter: blur(7px);
 
+  @include respond(tab-land) {
+    height: 36px;
+    width: 36px;
+    border-radius: 10px;
+  }
+
   &-icon {
     font-size: 2.8rem;
+
+    @include respond(tab-land) {
+      font-size: 2rem;
+    }
   }
 
   &:hover {

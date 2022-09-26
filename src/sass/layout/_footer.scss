@@ -9,6 +9,12 @@
   gap: 2.8rem;
   position: relative;
 
+  @include respond(tab-land) {
+    margin-top: 6rem;
+    font-size: 1.6rem;
+    gap: 2rem;
+  }
+
   &::after {
     position: absolute;
     content: '';
@@ -28,6 +34,10 @@
     position: relative;
     letter-spacing: 0.5px;
     transition: all 0.4s;
+
+    @include respond(tab-land) {
+      font-size: 1.8rem;
+    }
 
     &:hover,
     &:active {
@@ -55,9 +65,19 @@
     display: flex;
     align-items: center;
     gap: 2.4rem;
+
+    @include respond(tab-land) {
+      gap: 2rem;
+    }
+
     & li {
       font-size: 2.4rem;
       transition: all 0.3s;
+
+      @include respond(tab-land) {
+        font-size: 2.2rem;
+      }
+
       & a {
         color: $color-text-primary;
         transition: all 0.3s;

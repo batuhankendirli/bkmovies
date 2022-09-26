@@ -1,17 +1,29 @@
 .section-main {
   position: relative;
-  
-  // temporary
   min-height: 100vh;
   width: calc(100% - 30rem);
   background-color: $color-secondary;
   padding: 4rem 4.8rem 2.4rem 4.8rem;
   flex-direction: column;
+
+  @include respond(tab-land) {
+    width: calc((100% - 20rem));
+    padding: 3.2rem 4rem 2rem 4rem;
+  }
+
   &-header {
     margin-top: 6rem;
     font-size: 2.4rem;
     font-weight: 700;
     color: $color-text-primary;
+
+    @include respond(tab-land) {
+      margin-top: 2.8rem;
+    }
+
+    &:first-of-type {
+      margin-top: 6rem;
+    }
   }
 }
 
@@ -85,6 +97,11 @@
     width: 28rem;
     border-radius: 10px;
     position: relative;
+
+    @include respond(tab-land) {
+      width: 24rem;
+    }
+
     &-input {
       border: none;
       display: block;
@@ -130,6 +147,10 @@
     border-radius: 15px;
     position: relative;
     display: block;
+
+    @include respond(tab-land) {
+      height: 40rem;
+    }
   }
 
   &-header {
@@ -140,11 +161,18 @@
     top: 2.4rem;
     left: 3.2rem;
     z-index: 2;
+
+    @include respond(tab-land) {
+      font-size: 4rem;
+    }
   }
 }
 
 .swiper-pagination {
   width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &::after {
     content: '';
     top: 50%;
@@ -156,6 +184,10 @@
     height: 2.6rem;
     width: 7.4rem;
     background-color: $color-text-fourth;
+
+    @include respond(tab-land) {
+      width: 6.4rem;
+    }
   }
 }
 
@@ -171,6 +203,12 @@
   width: 10px;
   height: 10px;
   opacity: 1;
+
+  @include respond(tab-land) {
+    width: 8px;
+    height: 8px;
+  }
+
   &:hover {
     background-color: rgb(190, 190, 190);
   }
@@ -186,6 +224,12 @@
   height: 50px;
   background-color: $color-text-fourth;
   transition: all 0.2s;
+
+  @include respond(tab-land) {
+    width: 44px;
+    height: 44px;
+  }
+
   &:hover {
     background-color: $color-text-fifth;
   }
