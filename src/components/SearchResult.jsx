@@ -112,7 +112,7 @@ export default function SearchResult(props) {
           }/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US`
         );
         const dataActor = await resActor.json();
-        setActors(dataActor.cast.slice(0, 10));
+        setActors(dataActor.cast.slice(0, 15));
       } else if (pathTV) {
         const res = await fetch(
           `https://api.themoviedb.org/3/tv/${id || props.item.id}?api_key=${
@@ -138,20 +138,20 @@ export default function SearchResult(props) {
         );
 
         // ACTOR LIST
-
         const resActor = await fetch(
           `https://api.themoviedb.org/3/tv/${
             id || props.item.id
-          }/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US`
+          }/aggregate_credits?api_key=${
+            import.meta.env.VITE_TMDB_API_KEY
+          }&language=en-US`
         );
         const dataActor = await resActor.json();
 
-        setActors(dataActor.cast.slice(0, 10));
+        setActors(dataActor.cast.slice(0, 15));
       }
     }
     getResult();
   }, [props.item, id]);
-
   const handleWatchLater = async (item, type) => {
     if (user) {
       if (user.emailVerified) {
@@ -219,7 +219,9 @@ export default function SearchResult(props) {
                   <div className="searched-item-box-content">
                     <h1 className="searched-item-box-content-header">
                       {detailedSearch.title}{' '}
-                      <span>({detailedSearch.release_date.slice(0, 4)})</span>
+                      {detailedSearch.release_date && (
+                        <span>({detailedSearch.release_date.slice(0, 4)})</span>
+                      )}
                     </h1>
                     <div className="searched-item-box-content-container">
                       <p className="searched-item-box-content-container-genre">
@@ -232,7 +234,8 @@ export default function SearchResult(props) {
                           ? `${Math.floor(detailedSearch.runtime / 60)}h ${
                               detailedSearch.runtime % 60
                             }m`
-                          : `${detailedSearch.runtime}m`}
+                          : detailedSearch.runtime &&
+                            `${detailedSearch.runtime}m`}
                       </p>
                     </div>
                     <p className="searched-item-box-content-rating">
@@ -276,7 +279,9 @@ export default function SearchResult(props) {
                   </div>
                 </div>
               </div>
-              <h2 className="section-main-header">Cast</h2>
+              {actors.length > 0 && (
+                <h2 className="section-main-header">Cast</h2>
+              )}
 
               {actors.length > 0 ? (
                 <ActorSlide
@@ -291,7 +296,7 @@ export default function SearchResult(props) {
                   })}
                 />
               ) : (
-                <LoadingAnimation />
+                actors.length !== 0 && <LoadingAnimation />
               )}
             </div>
           )}
@@ -320,7 +325,11 @@ export default function SearchResult(props) {
                   <div className="searched-item-box-content">
                     <h1 className="searched-item-box-content-header">
                       {detailedSearch.name}{' '}
-                      <span>({detailedSearch.first_air_date.slice(0, 4)})</span>
+                      {detailedSearch.first_air_date && (
+                        <span>
+                          ({detailedSearch.first_air_date.slice(0, 4)})
+                        </span>
+                      )}
                     </h1>
                     <div className="searched-item-box-content-container">
                       <p className="searched-item-box-content-container-genre">
@@ -333,7 +342,8 @@ export default function SearchResult(props) {
                           ? `${Math.floor(
                               detailedSearch.episode_run_time / 60
                             )}h ${detailedSearch.episode_run_time % 60}m`
-                          : `${detailedSearch.episode_run_time[0]}m`}
+                          : detailedSearch.episode_run_time[0] &&
+                            `${detailedSearch.episode_run_time[0]}m`}
                       </p>
                     </div>
                     <p className="searched-item-box-content-rating">
@@ -376,21 +386,23 @@ export default function SearchResult(props) {
                   </div>
                 </div>
               </div>
-              <h2 className="section-main-header">Cast</h2>
-              {actors.length > 0 ? (
+              {actors.length > 0 && (
+                <h2 className="section-main-header">Cast</h2>
+              )}
+              {actors.length > 0 && actors[0]?.roles ? (
                 <ActorSlide
                   data={actors.map((item) => {
                     return (
                       <ActorCard
                         image={item.profile_path}
                         name={item.name}
-                        character={item.character}
+                        character={item?.roles[0].character}
                       />
                     );
                   })}
                 />
               ) : (
-                <LoadingAnimation />
+                actors.length !== 0 && <LoadingAnimation />
               )}
             </div>
           )}
@@ -399,9 +411,11 @@ export default function SearchResult(props) {
         <LoadingAnimation />
       )}
 
-      <h2 className="section-main-header">
-        Recommended {type === 'movie' ? 'Movies' : 'TV Shows'}
-      </h2>
+      {recommended.length > 0 && (
+        <h2 className="section-main-header">
+          Recommended {type === 'movie' ? 'Movies' : 'TV Shows'}
+        </h2>
+      )}
       <div className="series-wrapper">
         {recommended.length <= 10 && recommended.length !== 0 ? (
           <ShowSlide
@@ -430,7 +444,7 @@ export default function SearchResult(props) {
             })}
           />
         ) : (
-          <LoadingAnimation />
+          recommended.length !== 0 && <LoadingAnimation />
         )}
       </div>
     </>
