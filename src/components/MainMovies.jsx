@@ -177,7 +177,7 @@ export default function MainMovies() {
         <>
           <div className="modal-backdrop" ref={noTrailerRef}></div>
           <div className="trailer-content">
-            <h1 className="trailer-content-text">No Trailer Found</h1>
+            <h1 className="trailer-content-text">There was no trailer found.</h1>
             <ion-icon
               name="close-outline"
               class="trailer-content-icon-close"
