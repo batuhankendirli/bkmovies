@@ -199,7 +199,11 @@ export default function UserPanel() {
     };
 
     document.body.addEventListener('click', close);
-    return () => document.body.removeEventListener('click', close);
+    document.body.addEventListener('touchstart', close);
+    return () => {
+      document.body.removeEventListener('click', close);
+      document.body.removeEventListener('touchstart', close);
+    };
   }, []);
 
   return (
