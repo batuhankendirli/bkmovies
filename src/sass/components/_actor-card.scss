@@ -19,6 +19,10 @@
       width: 130px;
       height: 160px;
     }
+    @include respond(tab-land) {
+      width: 100px;
+      height: 135px;
+    }
   }
 
   &-texts {
@@ -53,11 +57,18 @@
     width: 130px !important;
   }
 
+  @include respond(tab-land) {
+    width: 100px !important;
+  }
+
   &:not(:last-child) {
     margin-right: 30px;
 
     @include respond(tab-land) {
       margin-right: 20px;
+    }
+    @include respond(tab-port) {
+      margin-right: 12px;
     }
   }
 }

@@ -23,7 +23,7 @@
       rgba($color: $color-secondary, $alpha: 1) 10%,
       rgba($color: $color-secondary, $alpha: 0.5)
     );
-    border-radius: 13px;
+    border-radius: 1.3rem;
 
     @include respond(tab-land) {
       height: 400px;
@@ -45,12 +45,20 @@
         color: $color-text-primary;
         font-size: 4.4rem;
         font-weight: 900;
+
+        @include respond(tab-port) {
+          font-size: 4rem;
+        }
       }
       &-paragraph {
         color: $color-text-tertiary;
         font-weight: 400;
         font-size: 1.6rem;
         text-align: center;
+
+        @include respond(tab-port) {
+          font-size: 1.4rem;
+        }
       }
     }
   }
@@ -58,7 +66,7 @@
   &-img {
     height: 600px;
     width: 100%;
-    border-radius: 15px;
+    border-radius: 1.5rem;
     object-fit: cover;
 
     @include respond(tab-land) {

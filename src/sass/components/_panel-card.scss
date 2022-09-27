@@ -11,6 +11,11 @@
     height: 110px;
   }
 
+  @include respond(tab-port) {
+    width: 135px;
+    height: 100px;
+  }
+
   &-wrapper {
     padding: 0.6rem;
     position: absolute;
@@ -26,13 +31,13 @@
       rgba(22, 24, 30, 0.7),
       rgba(22, 24, 30, 0.4)
     );
-    border-radius: 10px;
+    border-radius: 1rem;
   }
   &-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 1rem;
   }
   &-name {
     color: $color-text-primary;
@@ -92,12 +97,11 @@
     justify-self: end;
   }
   &-btn {
-    height: 30px;
-    border-radius: 10px;
+    height: 3rem;
+    border-radius: 1rem;
     font-size: 1.4rem;
 
     @include respond(tab-land) {
-      height: 24px;
       font-size: 1.2rem;
     }
 

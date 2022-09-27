@@ -4,7 +4,7 @@ import { Routes, Route, NavLink, Link } from 'react-router-dom';
 import { Context } from '../Context';
 
 export default function PanelCard(props) {
-  const { setClickedSearch } = React.useContext(Context);
+  const { setClickedSearch, setPanelActive } = React.useContext(Context);
 
   const genresText = [];
   const propsLength =
@@ -46,7 +46,10 @@ export default function PanelCard(props) {
               <Link
                 to={`/${props.type}/${props.id}`}
                 className="panel-card-texts-link"
-                onClick={() => handleClick(props.item)}
+                onClick={() => {
+                  handleClick(props.item);
+                  setPanelActive(false);
+                }}
               >
                 Details
               </Link>

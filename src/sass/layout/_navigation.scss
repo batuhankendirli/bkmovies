@@ -22,6 +22,10 @@
       background-color: rgb(33, 36, 45);
       top: 0;
       right: -3em;
+
+      @include respond(tab-port) {
+        right: -2.4rem;
+      }
     }
   }
 
@@ -33,6 +37,10 @@
 
     @include respond(tab-land) {
       width: 140px;
+    }
+
+    @include respond(tab-port) {
+      width: 120px;
     }
 
     & path {

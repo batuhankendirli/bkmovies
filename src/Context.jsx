@@ -21,6 +21,8 @@ function ContextProvider({ children }) {
     photoURL: '',
   });
   const [watchLater, setWatchLater] = useState([]);
+  const [panelActive, setPanelActive] = React.useState(false);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -61,6 +63,8 @@ function ContextProvider({ children }) {
         setWatchLater,
         changedData,
         setChangedData,
+        panelActive,
+        setPanelActive,
       }}
     >
       {children}

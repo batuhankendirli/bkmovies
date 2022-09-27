@@ -17,7 +17,8 @@ export default function SectionMain() {
   const [search, setSearch] = React.useState('');
   const [searchResults, setSearchResults] = React.useState([]);
   const [showResults, setShowResults] = React.useState(false);
-  const { clickedSearch, setClickedSearch, user } = React.useContext(Context);
+  const { clickedSearch, setClickedSearch, setPanelActive } =
+    React.useContext(Context);
   const searchRef = React.useRef(null);
 
   const [animationParent] = useAutoAnimate();
@@ -157,6 +158,11 @@ export default function SectionMain() {
             <div className="search-container">{mappedSearch}</div>
           )}
         </div>
+        <ion-icon
+          name="person-circle-outline"
+          class="search-area-user"
+          onClick={() => setPanelActive(true)}
+        ></ion-icon>
       </div>
       <Routes>
         <Route path="/" element={<MainHome />} />

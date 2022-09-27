@@ -7,8 +7,12 @@
   flex-direction: column;
 
   @include respond(tab-land) {
-    width: calc((100% - 20rem));
+    width: calc((100% - 25rem));
     padding: 3.2rem 4rem 2rem 4rem;
+  }
+
+  @include respond(tab-port) {
+    width: 100%;
   }
 
   &-header {
@@ -36,6 +40,11 @@
     align-items: center;
     gap: 6rem;
     list-style: none;
+
+    @include respond(tab-port) {
+      gap: 4.8rem;
+    }
+
     &-item {
       &-link {
         color: $color-text-primary;
@@ -95,11 +104,18 @@
     gap: 1.6rem;
     padding: 1.2rem 1.6rem;
     width: 28rem;
-    border-radius: 10px;
+    border-radius: 1rem;
     position: relative;
 
     @include respond(tab-land) {
-      width: 24rem;
+      width: 22rem;
+    }
+
+    @include respond(tab-port) {
+      flex: 1;
+      margin: 0 3.2rem;
+      gap: 1rem;
+      padding: 1.2rem;
     }
 
     &-input {
@@ -113,14 +129,41 @@
       &:focus {
         outline: none;
       }
+
+      @include respond(tab-port) {
+        font-size: 1.4rem;
+      }
     }
     &-icon {
       font-size: 2.2rem;
       color: $color-text-tertiary;
 
+      @include respond(tab-port) {
+        font-size: 2rem;
+      }
+
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+
+  &-user {
+    display: none;
+    font-size: 3.6rem;
+    color: #aeafb2;
+    padding: 0.4rem;
+    border-radius: 50%;
+    background-color: rgba($color: $color-primary, $alpha: 0.4);
+    transform: translateX(0.4rem);
+    transition: all 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($color: $color-primary, $alpha: 0.6);
+    }
+    @include respond(tab-port) {
+      display: block;
     }
   }
 }
@@ -144,7 +187,7 @@
     height: 45rem;
     width: 100%;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: 1.5rem;
     position: relative;
     display: block;
 
@@ -180,7 +223,7 @@
     transform: translate(-50%, -50%);
     position: absolute;
     z-index: -1;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     height: 2.6rem;
     width: 7.4rem;
     background-color: $color-text-fourth;
@@ -200,14 +243,9 @@
 
 .swiper-pagination-bullet {
   background-color: $color-text-primary;
-  width: 10px;
-  height: 10px;
+  width: 1rem;
+  height: 1rem;
   opacity: 1;
-
-  @include respond(tab-land) {
-    width: 8px;
-    height: 8px;
-  }
 
   &:hover {
     background-color: rgb(190, 190, 190);
@@ -219,23 +257,20 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-  border-radius: 15px;
-  width: 50px;
-  height: 50px;
+  border-radius: 1.5rem;
+  width: 5rem;
+  height: 5rem;
+  align-items: center;
+  justify-content: center;
   background-color: $color-text-fourth;
   transition: all 0.2s;
-
-  @include respond(tab-land) {
-    width: 44px;
-    height: 44px;
-  }
 
   &:hover {
     background-color: $color-text-fifth;
   }
   &::after,
   &::before {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 900;
     color: $color-text-primary;
   }

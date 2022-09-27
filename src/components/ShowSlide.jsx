@@ -11,8 +11,10 @@ import 'swiper/css/mousewheel';
 import 'swiper/css/free-mode';
 
 import { Lazy, FreeMode, Mousewheel, Scrollbar } from 'swiper';
+import { Context } from '../Context';
 
 export default function ShowSlide(props) {
+  const { setPanelActive } = React.useContext(Context);
   const slide = props.data.map((item) => {
     return (
       <SwiperSlide
@@ -43,7 +45,11 @@ export default function ShowSlide(props) {
           {slide},{' '}
           {props.button == true && (
             <SwiperSlide key={nanoid()} className="button-slide">
-              <Link to={'/watchlist'} className="show-rest">
+              <Link
+                to={'/watchlist'}
+                className="show-rest"
+                onClick={() => setPanelActive(false)}
+              >
                 <ion-icon
                   name="chevron-forward-outline"
                   class="show-rest-icon"

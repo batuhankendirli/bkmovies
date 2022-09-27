@@ -17,7 +17,17 @@
   }
 
   @include respond(tab-land) {
-    width: 20rem;
+    width: 25rem;
+  }
+
+  @include respond(tab-port) {
+    transform: translateX(25rem);
+    transition: all 0.3s;
+    z-index: 110;
+  }
+
+  &.user-panel-active {
+    transform: translateX(0);
   }
 
   &-buttons {
@@ -37,7 +47,6 @@
 
       @include respond(tab-land) {
         padding: 1.4rem 2.8rem;
-        border-radius: 10px;
       }
     }
     &-signin {
@@ -71,7 +80,7 @@
     height: min-content;
 
     @include respond(tab-land) {
-      padding: 4rem 1.6rem 1rem 1.6rem;
+      padding: 3.2rem 1.6rem 1rem 1.6rem;
     }
   }
 
@@ -137,15 +146,10 @@
       }
     }
     &-img {
-      width: 48px;
-      height: 48px;
+      width: 4.8rem;
+      height: 4.8rem;
       object-fit: cover;
-      border-radius: 15px;
-
-      @include respond(tab-land) {
-        width: 40px;
-        height: 40px;
-      }
+      border-radius: 1.5rem;
     }
     &-name {
       font-size: 1.6rem;
@@ -155,8 +159,8 @@
       overflow: hidden;
 
       @include respond(tab-land) {
-        font-size: 1.2rem;
-        width: 65px;
+        font-size: 1.4rem;
+        width: 80px;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
@@ -190,7 +194,6 @@
     @include respond(tab-land) {
       gap: 0.6rem;
       padding: 1.4rem 2.8rem;
-      border-radius: 10px;
     }
 
     &-icon {
@@ -215,9 +218,33 @@
     & p:first-child {
       font-size: 2.4rem;
       font-weight: 500;
+
+      @include respond(tab-land) {
+        font-size: 2rem;
+      }
     }
     & p {
       font-size: 1.6rem;
+      @include respond(tab-land) {
+        font-size: 1.4rem;
+      }
+    }
+  }
+  &-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    height: 100vh;
+    width: calc(100vw);
+    top: 0;
+    left: 0;
+    z-index: 100;
+    backdrop-filter: brightness(25%) blur(10px);
+    transition: all 0.3s;
+
+    &.user-panel-backdrop-active {
+      visibility: inherit;
+      opacity: 1;
     }
   }
 }

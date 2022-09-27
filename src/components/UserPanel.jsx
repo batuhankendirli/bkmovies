@@ -15,7 +15,8 @@ export default function UserPanel() {
   const [title, setTitle] = React.useState('');
   const modalRef = React.useRef(null);
   const settingsRef = React.useRef(null);
-  const { user, watchLater, setWatchLater } = React.useContext(Context);
+  const { user, watchLater, setWatchLater, panelActive, setPanelActive } =
+    React.useContext(Context);
   const [topMovies, setTopMovies] = React.useState([]);
   const [topTV, setTopTV] = React.useState([]);
   const [trailerActive, setTrailerActive] = React.useState(false);
@@ -24,6 +25,7 @@ export default function UserPanel() {
   const [firstTen, setFirstTen] = React.useState([]);
   const [noTrailer, setNoTrailer] = React.useState(false);
   const noTrailerRef = React.useRef(null);
+  const backdropRef = React.useRef(null);
 
   React.useEffect(() => {
     async function getTopRatedMovies() {
@@ -189,6 +191,17 @@ export default function UserPanel() {
     return () => document.body.removeEventListener('click', closePopup);
   }, []);
 
+  React.useEffect(() => {
+    const close = (e) => {
+      if (e.composedPath().includes(backdropRef.current)) {
+        setPanelActive(false);
+      }
+    };
+
+    document.body.addEventListener('click', close);
+    return () => document.body.removeEventListener('click', close);
+  }, []);
+
   return (
     <>
       {noTrailer && (
@@ -225,7 +238,15 @@ export default function UserPanel() {
           </div>
         </div>
       )}
-      <div className="user-panel">
+
+      <div
+        className={`user-panel-backdrop ${
+          panelActive && 'user-panel-backdrop-active'
+        }`}
+        ref={backdropRef}
+      ></div>
+
+      <div className={`user-panel ${panelActive && 'user-panel-active'}`}>
         {user ? (
           <div className="user-panel-wrapper">
             <div className="user-panel-top">
@@ -333,7 +354,13 @@ export default function UserPanel() {
                 />
               </div>
             </div>
-            <button className="user-panel-logout" onClick={handleLogout}>
+            <button
+              className="user-panel-logout"
+              onClick={() => {
+                handleLogout();
+                setPanelActive(false);
+              }}
+            >
               Log out{' '}
               <ion-icon
                 name="log-out-outline"
