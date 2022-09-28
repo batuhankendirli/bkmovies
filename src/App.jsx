@@ -25,6 +25,7 @@ function App() {
           fontFamily: 'Lato',
           fontWeight: '400',
         }}
+        draggablePercent={30}
       />
       <SectionMain />
       <UserPanel />
