@@ -49,6 +49,7 @@ export default function PanelCard(props) {
                 onClick={() => {
                   handleClick(props.item);
                   setPanelActive(false);
+                  document.body.classList.remove('blur');
                 }}
               >
                 Details

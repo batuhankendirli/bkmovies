@@ -403,6 +403,7 @@ export default function UserPanel() {
               onClick={() => {
                 handleLogout();
                 setPanelActive(false);
+                document.body.classList.remove('blur');
               }}
             >
               Log out{' '}

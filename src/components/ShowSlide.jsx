@@ -48,7 +48,10 @@ export default function ShowSlide(props) {
               <Link
                 to={'/watchlist'}
                 className="show-rest"
-                onClick={() => setPanelActive(false)}
+                onClick={() => {
+                  setPanelActive(false);
+                  document.body.classList.remove('blur');
+                }}
               >
                 <ion-icon
                   name="chevron-forward-outline"
