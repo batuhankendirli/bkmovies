@@ -90,7 +90,7 @@
   }
 
   &-label {
-    align-self: start;
+    align-self: flex-start;
     font-size: 1.6rem;
     font-weight: 500;
     color: $color-text-secondary;
@@ -194,7 +194,7 @@
   }
 
   &-forgot {
-    align-self: end;
+    align-self: flex-end;
     border: none;
     background-color: transparent;
     font-family: inherit;
@@ -263,7 +263,7 @@
 .modal-close {
   font-size: 3.2rem;
   color: rgb(158, 158, 158);
-  align-self: end;
+  align-self: flex-end;
   transition: all 0.3s;
 
   &:hover {

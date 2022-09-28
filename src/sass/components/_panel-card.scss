@@ -65,7 +65,7 @@
       color: $color-button;
       font-size: 1.2rem;
       font-weight: 900;
-      align-self: end;
+      align-self: flex-end;
       margin-left: 0.4rem;
     }
     &-type {
@@ -76,7 +76,7 @@
     &-link {
       display: block;
       width: fit-content;
-      align-self: end;
+      align-self: flex-end;
       border-radius: 5px;
       padding: 0.2rem 0.4rem;
       color: $color-button;
@@ -94,7 +94,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    justify-self: end;
+    justify-self: flex-end;
   }
   &-btn {
     height: 3rem;
