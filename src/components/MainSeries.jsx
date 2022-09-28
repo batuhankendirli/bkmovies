@@ -100,8 +100,6 @@ export default function MainSeries() {
             videoId={videoObject.key}
             className={'youtube'}
             opts={{
-              height: '563',
-              width: '1000',
               playerVars: {
                 autoplay: 1,
                 controls: 1,

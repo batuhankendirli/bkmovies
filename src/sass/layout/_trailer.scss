@@ -1,6 +1,6 @@
 .youtube-wrapper {
-  min-height: 56.3rem;
-  min-width: 100rem;
+  height: 63.5rem;
+  width: 100rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -8,16 +8,52 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include respond(tab-land) {
+    width: 88.9rem;
+    height: 57.2rem;
+  }
+
+  @include respond(tab-port) {
+    width: 68.75rem;
+    height: 45.825rem;
+  }
+
+  @include respond(phone) {
+    width: 42.86rem;
+    height: 31.35rem;
+  }
 }
 
 .youtube {
   box-shadow: -2px -3px 15px 5px rgba(0, 0, 0, 0.39);
+
+  iframe {
+    height: 56.3rem;
+    width: 100rem;
+
+    @include respond(tab-land) {
+      width: 88.9rem;
+      height: 50rem;
+    }
+
+    @include respond(tab-port) {
+      width: 68.75rem;
+      height: 38.625rem;
+    }
+
+    @include respond(phone) {
+      width: 42.86rem;
+      height: 24.15rem;
+    }
+  }
 }
 
 .close-video {
   background-color: black;
   width: 100%;
   padding: 2rem 1.5rem;
+  height: 7.2rem;
   color: white;
   font-size: 2rem;
   display: flex;
