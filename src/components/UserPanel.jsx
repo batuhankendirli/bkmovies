@@ -10,6 +10,7 @@ import YouTube from 'react-youtube';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import SettingsModal from './SettingsModal';
 import { toast } from 'react-toastify';
+import { NavLink } from 'react-router-dom';
 
 export default function UserPanel() {
   const [title, setTitle] = React.useState('');
@@ -195,6 +196,7 @@ export default function UserPanel() {
     const close = (e) => {
       if (e.composedPath().includes(backdropRef.current)) {
         setPanelActive(false);
+        document.body.classList.remove('blur');
       }
     };
 
@@ -277,6 +279,44 @@ export default function UserPanel() {
                 />
               </div>
             </div>
+            <ul className="user-panel-lists">
+              <li
+                className="user-panel-lists-item"
+                onClick={() => {
+                  setPanelActive(false);
+                  document.body.classList.remove('blur');
+                }}
+              >
+                <NavLink
+                  to={'/movies'}
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'user-panel-lists-item-link-active'
+                      : 'user-panel-lists-item-link'
+                  }
+                >
+                  Movies
+                </NavLink>
+              </li>
+              <li
+                className="user-panel-lists-item"
+                onClick={() => {
+                  setPanelActive(false);
+                  document.body.classList.remove('blur');
+                }}
+              >
+                <NavLink
+                  to={'/tv-shows'}
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'user-panel-lists-item-link-active'
+                      : 'user-panel-lists-item-link'
+                  }
+                >
+                  TV Shows
+                </NavLink>
+              </li>
+            </ul>
             <div className="user-panel-list" ref={animationParent}>
               {watchLater.length > 0 && <h1>Your Watchlist</h1>}
               <div className="user-panel-list-cards">

@@ -124,6 +124,7 @@
   @include respond(tab-land) {
     width: 160px !important;
   }
+
   @include respond(tab-port) {
     width: 135px !important;
   }
@@ -159,6 +160,10 @@
 
   @include respond(tab-land) {
     height: 110px;
+  }
+
+  @include respond(tab-port) {
+    height: 100px;
   }
 }
 

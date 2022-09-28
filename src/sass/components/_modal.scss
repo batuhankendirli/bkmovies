@@ -21,6 +21,13 @@
   background-color: $color-primary;
   padding: 2.4rem;
   border-radius: 1.5rem;
+
+  @include respond(phone) {
+    width: 38rem;
+    height: 45rem;
+    padding: 1.8rem;
+  }
+
   &-top {
     display: flex;
     align-items: center;
@@ -47,6 +54,10 @@
     align-items: center;
     gap: 2rem;
     width: 100%;
+
+    @include respond(phone) {
+      gap: 1.4rem;
+    }
   }
   &-input-wrapper {
     display: flex;
@@ -121,10 +132,19 @@
     text-transform: uppercase;
     color: $color-text-primary;
     transition: all 0.2s;
+
+    @include respond(phone) {
+      padding: 1rem 2rem;
+    }
+
     &:nth-child(2) {
       font-size: 1.4rem;
       justify-self: stretch;
       align-self: stretch;
+
+      @include respond(phone) {
+        font-size: 1.2rem;
+      }
     }
     &-update {
       border: none;

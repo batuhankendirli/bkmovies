@@ -161,7 +161,10 @@ export default function SectionMain() {
         <ion-icon
           name="person-circle-outline"
           class="search-area-user"
-          onClick={() => setPanelActive(true)}
+          onClick={() => {
+            setPanelActive(true);
+            document.body.classList.add('blur');
+          }}
         ></ion-icon>
       </div>
       <Routes>

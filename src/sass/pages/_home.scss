@@ -1,11 +1,7 @@
 .home {
-  height: 600px;
+  height: 70vh;
   width: 100%;
   position: relative;
-
-  @include respond(tab-land) {
-    height: 400px;
-  }
 
   &-wrapper {
     position: absolute;

@@ -34,6 +34,11 @@
     color: $color-text-primary;
     position: relative;
 
+    @include respond(phone) {
+      letter-spacing: 3px;
+      text-align: center;
+    }
+
     &::after {
       content: '';
       background-color: $color-text-primary;

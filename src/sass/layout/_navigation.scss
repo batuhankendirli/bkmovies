@@ -26,6 +26,10 @@
       @include respond(tab-port) {
         right: -2.4rem;
       }
+
+      @include respond(phone) {
+        width: 0;
+      }
     }
   }
 
@@ -41,6 +45,10 @@
 
     @include respond(tab-port) {
       width: 120px;
+    }
+
+    @include respond(phone) {
+      width: 90px;
     }
 
     & path {

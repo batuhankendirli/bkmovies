@@ -19,9 +19,14 @@
       width: 130px;
       height: 160px;
     }
-    @include respond(tab-land) {
+    @include respond(tab-port) {
       width: 100px;
       height: 135px;
+    }
+
+    @include respond(phone) {
+      width: 90px;
+      height: 120px;
     }
   }
 
@@ -57,8 +62,12 @@
     width: 130px !important;
   }
 
-  @include respond(tab-land) {
+  @include respond(tab-port) {
     width: 100px !important;
+  }
+
+  @include respond(phone) {
+    width: 90px !important;
   }
 
   &:not(:last-child) {

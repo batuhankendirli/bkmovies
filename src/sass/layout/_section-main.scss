@@ -15,6 +15,10 @@
     width: 100%;
   }
 
+  @include respond(phone) {
+    padding: 2rem 2.4rem 1rem 2.4rem;
+  }
+
   &-header {
     margin-top: 6rem;
     font-size: 2.4rem;
@@ -46,6 +50,10 @@
     }
 
     &-item {
+      @include respond(phone) {
+        display: none;
+      }
+
       &-link {
         color: $color-text-primary;
         text-decoration: none;
@@ -116,6 +124,10 @@
       margin: 0 3.2rem;
       gap: 1rem;
       padding: 1.2rem;
+    }
+
+    @include respond(phone) {
+      margin: 0 1.2rem 0 1.6rem;
     }
 
     &-input {
@@ -194,6 +206,10 @@
     @include respond(tab-land) {
       height: 40rem;
     }
+
+    @include respond(phone) {
+      height: 36rem;
+    }
   }
 
   &-header {
@@ -207,6 +223,12 @@
 
     @include respond(tab-land) {
       font-size: 4rem;
+    }
+
+    @include respond(phone) {
+      font-size: 3.6rem;
+      top: 1.6rem;
+      left: 2rem;
     }
   }
 }
@@ -239,6 +261,10 @@
   bottom: 2.8rem;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @include respond(phone) {
+    bottom: 2.4rem;
+  }
 }
 
 .swiper-pagination-bullet {
@@ -273,5 +299,10 @@
     font-size: 1.6rem;
     font-weight: 900;
     color: $color-text-primary;
+  }
+
+  @include respond(phone) {
+    width: 4.4rem;
+    height: 4.4rem;
   }
 }
