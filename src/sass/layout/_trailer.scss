@@ -77,7 +77,15 @@
 
 .yt-bg {
   z-index: 9999;
-  backdrop-filter: brightness(25%) blur(5px);
+  background-color: rgba(0, 0, 0, 0.7);
+
+  @supports (backdrop-filter: brightness(25%) blur(5px)) or
+    (-webkit-backdrop-filter: brightness(25%) blur(5px)) {
+    background-color: transparent;
+    backdrop-filter: brightness(25%) blur(5px);
+    -webkit-backdrop-filter: brightness(25%) blur(5px);
+  }
+
   width: 100%;
   height: 100%;
   position: fixed;

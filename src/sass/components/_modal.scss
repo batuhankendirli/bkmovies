@@ -5,7 +5,14 @@
   top: 0;
   left: 0;
   z-index: 9988;
-  backdrop-filter: brightness(25%) blur(10px);
+  background-color: rgba(0, 0, 0, 0.7);
+
+  @supports (backdrop-filter: brightness(25%) blur(7px)) or
+    (-webkit-backdrop-filter: brightness(25%) blur(7px)) {
+    background-color: transparent;
+    backdrop-filter: brightness(25%) blur(7px);
+    -webkit-backdrop-filter: brightness(25%) blur(7px);
+  }
 }
 
 .modal-content {
@@ -150,7 +157,6 @@
       border: none;
       display: block;
       padding: 1.2rem 2.4rem;
-      background-color: $color-text-fourth;
       align-self: center;
       border-radius: 1.5rem;
       font-family: inherit;
@@ -158,7 +164,16 @@
       font-weight: 700;
       text-transform: uppercase;
       color: $color-text-primary;
-      backdrop-filter: blur(7px);
+
+      background-color: rgba($color: $color-text-tertiary, $alpha: 0.4);
+
+      @supports (backdrop-filter: blur(7px)) or
+        (-webkit-backdrop-filter: blur(7px)) {
+        background-color: $color-text-fourth;
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+      }
+
       transition: all 0.2s;
 
       &:hover {

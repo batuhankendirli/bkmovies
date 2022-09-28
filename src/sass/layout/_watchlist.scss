@@ -81,8 +81,15 @@
     transition: all 0.3s;
     align-self: center;
     color: $color-text-primary;
-    background-color: rgba(128, 128, 128, 0.356);
-    backdrop-filter: blur(7px);
+    background-color: rgba(128, 128, 128, 0.5);
+
+    @supports (backdrop-filter: blur(7px)) or
+      (-webkit-backdrop-filter: blur(7px)) {
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      background-color: rgba(128, 128, 128, 0.356);
+    }
+
     transition: all 0.2s;
 
     @include respond(tab-land) {
@@ -108,9 +115,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-text-fourth;
+  background-color: rgba($color: $color-text-tertiary, $alpha: 0.4);
   transition: all 0.4s;
-  backdrop-filter: blur(7px);
+
+  @supports (backdrop-filter: blur(7px)) or (-webkit-backdrop-filter: blur(7px)) {
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    background-color: $color-text-fourth;
+  }
 
   &:hover {
     background-color: $color-button-remove;

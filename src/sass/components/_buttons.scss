@@ -13,9 +13,16 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: $color-text-fourth;
+    background-color: rgba($color: $color-text-tertiary, $alpha: 0.4);
+
+    @supports (backdrop-filter: blur(7px)) or
+      (-webkit-backdrop-filter: blur(7px)) {
+      background-color: $color-text-fourth;
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
     transition: all 0.2s;
-    backdrop-filter: blur(7px);
 
     @include respond(tab-land) {
       padding: 1rem 1.6rem;

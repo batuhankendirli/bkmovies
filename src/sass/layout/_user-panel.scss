@@ -58,8 +58,15 @@
     }
     &-signin {
       color: $color-text-primary;
-      background-color: rgba(128, 128, 128, 0.356);
-      backdrop-filter: blur(7px);
+      background-color: rgba(128, 128, 128, 0.7);
+
+      @supports (backdrop-filter: blur(7px)) or
+        (-webkit-backdrop-filter: blur(7px)) {
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+        background-color: rgba(128, 128, 128, 0.356);
+      }
+
       transition: all 0.2s;
       &:hover {
         background-color: $color-text-fifth;
@@ -247,7 +254,16 @@
     top: 0;
     left: 0;
     z-index: 100;
-    backdrop-filter: brightness(25%) blur(10px);
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    @supports (backdrop-filter: brightness(25%) blur(10px)) or
+      (-webkit-backdrop-filter: brightness(25%) blur(10px)) {
+      background-color: transparent;
+      backdrop-filter: brightness(25%) blur(10px);
+      -webkit-backdrop-filter: brightness(25%) blur(10px);
+    }
+
     transition: all 0.3s;
 
     &.user-panel-backdrop-active {
