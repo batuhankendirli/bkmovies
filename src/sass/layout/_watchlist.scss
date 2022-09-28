@@ -124,6 +124,16 @@
     background-color: $color-text-fourth;
   }
 
+  @include respond(tab-land) {
+    height: 4.4rem;
+    width: 4.4rem;
+  }
+
+  @include respond(phone) {
+    height: 4rem;
+    width: 4rem;
+  }
+
   &:hover {
     background-color: $color-button-remove;
   }
