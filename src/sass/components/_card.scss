@@ -135,7 +135,7 @@
     @include respond(tab-land) {
       margin-right: 20px;
     }
-    @include respond(tab-land) {
+    @include respond(tab-port) {
       margin-right: 15px;
     }
   }

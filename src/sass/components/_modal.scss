@@ -29,7 +29,7 @@
   padding: 2.4rem;
   border-radius: 1.5rem;
 
-  @include respond(phone) {
+  @include respond(tab-port) {
     width: 38rem;
     height: 45rem;
     padding: 1.8rem;

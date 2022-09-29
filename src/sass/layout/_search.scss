@@ -184,7 +184,7 @@ input[type='search']::-webkit-search-results-decoration {
         gap: 0.4rem;
       }
 
-      @include respond(tab-land) {
+      @include respond(tab-port) {
         gap: 0.2rem;
       }
 
@@ -223,7 +223,7 @@ input[type='search']::-webkit-search-results-decoration {
           font-size: 1.4rem;
         }
 
-        @include respond(tab-land) {
+        @include respond(tab-port) {
           font-size: 1.2rem;
         }
 
@@ -296,7 +296,7 @@ input[type='search']::-webkit-search-results-decoration {
             text-overflow: ellipsis;
           }
 
-          @include respond(tab-land) {
+          @include respond(tab-port) {
             font-size: 1.2rem;
           }
         }
@@ -315,7 +315,7 @@ input[type='search']::-webkit-search-results-decoration {
     gap: 2rem;
   }
 
-  @include respond(tab-land) {
+  @include respond(tab-port) {
     gap: 1.4rem;
   }
 }
