@@ -11,7 +11,6 @@ import {
   updateUserData,
 } from '../firebase';
 import { Context } from '../Context';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { updatePassword } from 'firebase/auth';
 import PasswordModal from './PasswordModal';
@@ -141,8 +140,7 @@ const SettingsModal = forwardRef((props, ref) => {
                   photoURL: user.photoURL || '',
                 });
                 setNewPassword('');
-              }}
-            ></motion.div>
+              }}></motion.div>
             <motion.div
               className="modal-content"
               initial={{
@@ -158,8 +156,7 @@ const SettingsModal = forwardRef((props, ref) => {
                 scale: 0,
                 opacity: 0,
                 transition: { duration: 0.2, delay: 0.2 },
-              }}
-            >
+              }}>
               <motion.form
                 className="modal-content-form"
                 initial={{
@@ -175,8 +172,7 @@ const SettingsModal = forwardRef((props, ref) => {
                   y: 20,
                   opacity: 0,
                   transition: { duration: 0.2 },
-                }}
-              >
+                }}>
                 <div className="modal-content-top">
                   <h1 className="modal-content-form-title">Settings</h1>
                   <span>
@@ -185,8 +181,7 @@ const SettingsModal = forwardRef((props, ref) => {
                       class="modal-content-close"
                       onClick={() => {
                         setOpen(false);
-                      }}
-                    ></ion-icon>
+                      }}></ion-icon>
                   </span>
                 </div>
                 <div className="modal-content-wrapper">
@@ -200,8 +195,7 @@ const SettingsModal = forwardRef((props, ref) => {
                     <div className="form-label-input">
                       <label
                         htmlFor="name"
-                        className="modal-content-form-label"
-                      >
+                        className="modal-content-form-label">
                         Name
                       </label>
                       <input
@@ -218,8 +212,7 @@ const SettingsModal = forwardRef((props, ref) => {
                     <div className="form-label-input">
                       <label
                         htmlFor="photourl"
-                        className="modal-content-form-label"
-                      >
+                        className="modal-content-form-label">
                         Photo URL
                       </label>
                       <input
@@ -236,16 +229,14 @@ const SettingsModal = forwardRef((props, ref) => {
                       <button
                         type="button"
                         className="modal-content-form-button"
-                        onClick={handleSave}
-                      >
+                        onClick={handleSave}>
                         Save
                       </button>
                       {!user.emailVerified && (
                         <button
                           type="button"
                           className="modal-content-form-button"
-                          onClick={handleVerify}
-                        >
+                          onClick={handleVerify}>
                           Verify Email
                         </button>
                       )}
@@ -256,8 +247,7 @@ const SettingsModal = forwardRef((props, ref) => {
                   <div className="form-label-input">
                     <label
                       htmlFor="password"
-                      className="modal-content-form-label"
-                    >
+                      className="modal-content-form-label">
                       New password
                     </label>
                     <input
@@ -276,8 +266,7 @@ const SettingsModal = forwardRef((props, ref) => {
                       disabled
                       type="button"
                       className="modal-content-form-button-update"
-                      onClick={handlePasswordChange}
-                    >
+                      onClick={handlePasswordChange}>
                       Update Password
                     </button>
                   )}
@@ -285,8 +274,7 @@ const SettingsModal = forwardRef((props, ref) => {
                     <button
                       type="button"
                       className="modal-content-form-button-update"
-                      onClick={() => handlePasswordChange(newPassword)}
-                    >
+                      onClick={() => handlePasswordChange(newPassword)}>
                       Update Password
                     </button>
                   )}

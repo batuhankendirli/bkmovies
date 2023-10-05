@@ -93,8 +93,7 @@ const PasswordModal = forwardRef((props, ref) => {
                 scale: 0,
                 opacity: 0,
                 transition: { duration: 0.2, delay: 0.2 },
-              }}
-            >
+              }}>
               <motion.form
                 className="modal-content-form"
                 initial={{
@@ -110,19 +109,16 @@ const PasswordModal = forwardRef((props, ref) => {
                   y: 15,
                   opacity: 0,
                   transition: { duration: 0.2 },
-                }}
-              >
+                }}>
                 <ion-icon
                   name="close-outline"
                   class="modal-close"
-                  onClick={() => setOpen(false)}
-                ></ion-icon>
+                  onClick={() => setOpen(false)}></ion-icon>
 
                 <div className="form-label-input">
                   <label
                     htmlFor="password"
-                    className="modal-content-form-label"
-                  >
+                    className="modal-content-form-label">
                     Password
                   </label>
                   <input
@@ -141,8 +137,7 @@ const PasswordModal = forwardRef((props, ref) => {
                     disabled
                     type="submit"
                     className="modal-content-form-button"
-                    onClick={(e) => handleSubmit(e, password)}
-                  >
+                    onClick={(e) => handleSubmit(e, password)}>
                     Log in
                   </button>
                 )}
@@ -150,8 +145,7 @@ const PasswordModal = forwardRef((props, ref) => {
                   <button
                     type="submit"
                     className="modal-content-form-button"
-                    onClick={(e) => handleSubmit(e, password)}
-                  >
+                    onClick={(e) => handleSubmit(e, password)}>
                     Log in
                   </button>
                 )}
