@@ -93,7 +93,9 @@ export default function SectionMain() {
             {item.title || item.name}
           </h2>
           <div className="search-item-details-p">
-            <p className="search-item-details-p-rating">{item.vote_average}</p>
+            <p className="search-item-details-p-rating">
+              {item.vote_average.toFixed(1)}
+            </p>
             <p className="search-item-details-p-type">
               {item.media_type[0].toUpperCase()}
               {item.media_type.slice(1)}
